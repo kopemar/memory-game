@@ -1,0 +1,6 @@
+export const COLORS = {
+    WASSERMANN: "#6AA331",
+    LIGHT_WASSERMANN: "#ACD87E",
+    DARK_WASSERMANN: "#4a7524",
+    GREEN_AGAIN: "#7AB341",
+}
