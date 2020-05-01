@@ -3,9 +3,8 @@ import styled, {css} from 'styled-components';
 import {COLORS} from "../constant/Constants";
 
 const Container = styled.div`
-    margin: 10px;
-    width: ${({size}) => size}px;
-    height: ${({size}) => size}px; 
+    box-sizing: border-box;
+    width: 25%;
     border-radius: 10px;
     perspective: 1000px;
 `;
@@ -62,7 +61,7 @@ export const CardView = ({card}) => {
         setActive(!active)
     }
     return (
-        <Container size={viewBoxSize} onClick={(event) => handleClick(event)}>
+        <Container onClick={(event) => handleClick(event)}>
             {card.number}
             <svg viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}>
                 <defs>
@@ -72,7 +71,7 @@ export const CardView = ({card}) => {
                     </linearGradient>
                 </defs>
                 <FlipCard active={active}>
-                <Inner active={active}>
+                <Inner active={active} size={viewBoxSize}>
                     <Back active={active} fill={getSelector(gradientId)} id="card_bg_rectangle"/>
                     <Front active={active} src={card.src} />
                 </Inner>
