@@ -9,6 +9,7 @@ const Container = styled.div`
     border-radius: 10px;
     perspective: 1000px;
 `;
+
 const Inner = styled.g`
     position: relative;
     fill: transparent;
@@ -20,6 +21,7 @@ const Inner = styled.g`
 
 const FlipCard = styled.g`
     perspective: 1000px;
+    position: relative; 
 `
 
 
@@ -28,23 +30,27 @@ const Back = styled.rect`
     height: 60%;
     rx: 10;
     fill: url(${({fill}) => fill});
-    stroke: ${({active}) => !active ? COLORS.DARK_WASSERMANN : COLORS.WASSERMANN}; 
+    stroke: ${({active}) => active ? COLORS.DARK_WASSERMANN : COLORS.WASSERMANN}; 
     position: absolute;
     backface-visibility: hidden;
     
+    &:hover {
+        stroke: ${COLORS.DARK_WASSERMANN}
+    }
 `
 
 const Front = styled.rect`
     width: 60%;
     height: 60%;
     rx: 10;
+    fill: url(${({src}) => src});
     stroke: ${({active}) => !active ? COLORS.DARK_WASSERMANN : COLORS.WASSERMANN}; 
     position: absolute;
     backface-visibility: hidden;
     transform: rotateY(180deg);
 `
 
-export const Card = () => {
+export const Card = ({src}) => {
     const [active, setActive] = useState(false);
     const getSelector = (id) => {
         return `#${id}`
@@ -67,7 +73,7 @@ export const Card = () => {
                 <FlipCard active={active}>
                 <Inner active={active}>
                     <Back active={active} fill={getSelector(gradientId)} id="card_bg_rectangle"/>
-                    <Front active={active} />
+                    <Front active={active} src={src} />
                 </Inner>
                 </FlipCard>
             </svg>
