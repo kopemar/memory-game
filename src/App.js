@@ -1,13 +1,16 @@
 import React from 'react';
 import './App.css';
-import {Card} from "./component/Card";
-import {Game} from "./Game";
+import {CardView} from "./component/CardView";
+import {Card, Game} from "./Game";
 
 function App() {
-    new Game(16);
+    const game = new Game(16);
     return (
         <div className="App">
-            <Card/>
+            {
+                game && game.cards.map((card) => <CardView card={new Card(card.number)}/>)
+            }
+
         </div>
     );
 }

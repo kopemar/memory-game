@@ -43,14 +43,14 @@ const Front = styled.rect`
     width: 60%;
     height: 60%;
     rx: 10;
-    fill: url(${({src}) => src});
+    fill: ${({src}) => src};
     stroke: ${({active}) => !active ? COLORS.DARK_WASSERMANN : COLORS.WASSERMANN}; 
     position: absolute;
     backface-visibility: hidden;
     transform: rotateY(180deg);
 `
 
-export const Card = ({src}) => {
+export const CardView = ({card}) => {
     const [active, setActive] = useState(false);
     const getSelector = (id) => {
         return `#${id}`
@@ -63,17 +63,18 @@ export const Card = ({src}) => {
     }
     return (
         <Container size={viewBoxSize} onClick={(event) => handleClick(event)}>
+            {card.number}
             <svg viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}>
                 <defs>
                     <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id={gradientId}>
-                        <stop stop-color={COLORS.LIGHT_WASSERMANN} offset="0%"/>
-                        <stop stop-color={COLORS.GREEN_AGAIN} offset="100%"/>
+                        <stop stopColor={COLORS.LIGHT_WASSERMANN} offset="0%"/>
+                        <stop stopColor={COLORS.GREEN_AGAIN} offset="100%"/>
                     </linearGradient>
                 </defs>
                 <FlipCard active={active}>
                 <Inner active={active}>
                     <Back active={active} fill={getSelector(gradientId)} id="card_bg_rectangle"/>
-                    <Front active={active} src={src} />
+                    <Front active={active} src={card.src} />
                 </Inner>
                 </FlipCard>
             </svg>

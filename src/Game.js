@@ -1,3 +1,5 @@
+import {COLORS} from "./constant/Constants";
+
 export class Game {
 
     constructor(count) {
@@ -31,9 +33,10 @@ export class Game {
     }
 }
 
-class Card {
+export class Card {
     constructor(number) {
-        this.number = number
+        this.number = number;
+        this.src = Card.image[number]
     }
 
     equals (card) {
@@ -41,5 +44,16 @@ class Card {
             return card.number === this.number
         }
         return false
+    }
+
+    static image = {
+        0: `${COLORS.DARK_WASSERMANN}`,
+        1: "",
+        2: "",
+        3: "",
+        4: "",
+        5: "",
+        6: "",
+        7: "",
     }
 }
