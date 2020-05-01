@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {COLORS} from "../constant/Constants";
 
 const Container = styled.div`
@@ -7,18 +7,41 @@ const Container = styled.div`
     width: ${({size}) => size}px;
     height: ${({size}) => size}px; 
     border-radius: 10px;
+    perspective: 1000px;
 `;
+const Inner = styled.g`
+    position: relative;
+    fill: transparent;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    text-align: center;
+    ${({active}) => active && css`transform: rotateY(180deg);`}
+`
 
-const Rectangle = styled.rect`
-    width: 90%;
-    height: 90%;
+const FlipCard = styled.g`
+    perspective: 1000px;
+`
+
+
+const Back = styled.rect`
+    width: 60%;
+    height: 60%;
     rx: 10;
     fill: url(${({fill}) => fill});
-    stroke: ${({active}) => active ? COLORS.DARK_WASSERMANN : COLORS.WASSERMANN}; 
+    stroke: ${({active}) => !active ? COLORS.DARK_WASSERMANN : COLORS.WASSERMANN}; 
+    position: absolute;
+    backface-visibility: hidden;
     
-    :hover {
-        stroke: ${COLORS.DARK_WASSERMANN}
-    }
+`
+
+const Front = styled.rect`
+    width: 60%;
+    height: 60%;
+    rx: 10;
+    stroke: ${({active}) => !active ? COLORS.DARK_WASSERMANN : COLORS.WASSERMANN}; 
+    position: absolute;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
 `
 
 export const Card = () => {
@@ -41,7 +64,12 @@ export const Card = () => {
                         <stop stop-color={COLORS.GREEN_AGAIN} offset="100%"/>
                     </linearGradient>
                 </defs>
-                <Rectangle active={active} fill={getSelector(gradientId)} id="card_bg_rectangle"/>
+                <FlipCard active={active}>
+                <Inner active={active}>
+                    <Back active={active} fill={getSelector(gradientId)} id="card_bg_rectangle"/>
+                    <Front active={active} />
+                </Inner>
+                </FlipCard>
             </svg>
         </Container>
     )
