@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import {CardView} from "./CardView";
 import {Card} from "../Game";
+import {AppContext} from "../context/AppContext";
 
 const PlaygroundContainer = styled.main`
     display: flex;
@@ -12,13 +13,22 @@ const PlaygroundContainer = styled.main`
 
 
 export const Playground = ({game}) => {
-    const handleCardClick = (card) => {
+    const cards = [];
+
+    const {setCCard} = useContext(AppContext);
+
+    game.cards.forEach((card) => {
+        cards.push(<CardView clickHandler={(card) => handleCardClick(card)} card={new Card(card.number)}/>)})
+
+    async function handleCardClick(card) {
         card.active = true;
         if (game.activeCard === null) {
             game.activeCard = card;
-            console.log(game.activeCard)
+            setCCard(card);
         } else {
             if (game.activeCard.equals(card)) {
+                game.activeCard.discovered = true
+                card.discovered = true
                 console.log("Match!");
                 game.activeCard = null;
             } else {
@@ -26,11 +36,11 @@ export const Playground = ({game}) => {
                 card.active = false;
                 game.activeCard = null;
             }
-
+            setCCard(null)
         }
-    }
-    return <PlaygroundContainer>
-        {game && game.cards.map((card) => <CardView onClick={(card) => handleCardClick(card)}
-                                                    card={new Card(card.number)}/>)}
-    </PlaygroundContainer>
+}
+
+return <PlaygroundContainer>
+    {cards}
+</PlaygroundContainer>
 };

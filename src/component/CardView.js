@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import styled, {css} from 'styled-components';
 import {COLORS} from "../constant/Constants";
+import {AppContext} from "../context/AppContext";
 
 const Container = styled.div`
     box-sizing: border-box;
@@ -49,8 +50,11 @@ const Front = styled.rect`
     transform: rotateY(180deg);
 `
 
-export const CardView = ({card, onClick}) => {
-    const [active, setActive] = useState(false);
+export const CardView = ({card, clickHandler}) => {
+    const [active, setActive] = useState(card.active);
+    const {cCard} = useContext(AppContext);
+    console.log(cCard);
+
     const getSelector = (id) => {
         return `#${id}`
     }
@@ -58,9 +62,15 @@ export const CardView = ({card, onClick}) => {
     const gradientId = "green_linear_gradient";
 
     const handleClick = () => {
-        onClick(card);
-        console.log(card)
-        setActive(card.active)
+        clickHandler(card)
+        setActive(true);
+        setTimeout(() => {
+            setActive(card.active)
+        }, 500)
+
+        setTimeout(() => {
+            setActive(card.discovered)
+        }, 1500)
     }
 
     return (
@@ -73,14 +83,14 @@ export const CardView = ({card, onClick}) => {
                     </linearGradient>
 
                     <pattern id="img1" patternUnits="userSpaceOnUse" width="100" height="100">
-                        <image href="wall.jpg" x="0" y="0" width="100" height="100" />
+                        <image href="wall.jpg" x="0" y="0" width="100" height="100"/>
                     </pattern>
                 </defs>
-                <FlipCard active={active}>
-                <Inner active={active} size={viewBoxSize}>
-                    <Back active={active} fill={getSelector(gradientId)} id="card_bg_rectangle"/>
-                    <Front active={active} src={card.src} fill="#img1"/>
-                </Inner>
+                <FlipCard>
+                    <Inner active={card.isTheSame(cCard) || active} size={viewBoxSize}>
+                        <Back active={card.isTheSame(cCard) || active} fill={getSelector(gradientId)} id="card_bg_rectangle"/>
+                        <Front active={card.isTheSame(cCard) || active} src={card.src} fill="#img1"/>
+                    </Inner>
                 </FlipCard>
             </svg>
         </Container>

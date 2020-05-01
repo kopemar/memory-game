@@ -40,11 +40,13 @@ export class Card {
         this.src = Card.image[number];
         this.active = false;
         this.id = Card.getId();
+        this.discovered = false;
     }
 
     isTheSame = (card) => this.equals(card) && this.id === card.id;
 
     equals (card) {
+        if (card === null) return this === null;
         if (card.hasOwnProperty("number")) {
             return card.number === this.number
         }
@@ -58,13 +60,13 @@ export class Card {
     }
 
     static image = {
-        0: `${COLORS.DARK_WASSERMANN}`,
-        1: `${COLORS.GREEN_AGAIN}`,
-        2: `${COLORS.GRAY_BUT_GREEN}`,
-        3: `${COLORS.ANOTHER_GREEN}`,
-        4: `${COLORS.YELLOW_GREEN}`,
-        5: `${COLORS.WASSERMANN}`,
-        6: `${COLORS.LIGHT_WASSERMANN}`,
+        0: `${COLORS.ORANGE}`,
+        1: `${COLORS.BARBIE}`,
+        2: `${COLORS.COMMIE}`,
+        3: `${COLORS.DEEP_PURPLE}`,
+        4: `${COLORS.JUST_GOLD}`,
+        5: `${COLORS.TURQUOISE}`,
+        6: `${COLORS.MARINE}`,
         7: `${COLORS.POISON}`,
     }
 }
