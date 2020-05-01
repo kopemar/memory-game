@@ -49,7 +49,7 @@ const Front = styled.rect`
     transform: rotateY(180deg);
 `
 
-export const CardView = ({card}) => {
+export const CardView = ({card, onClick}) => {
     const [active, setActive] = useState(false);
     const getSelector = (id) => {
         return `#${id}`
@@ -57,23 +57,29 @@ export const CardView = ({card}) => {
     const viewBoxSize = 160;
     const gradientId = "green_linear_gradient";
 
-    const handleClick = (event) => {
-        setActive(!active)
+    const handleClick = () => {
+        onClick(card);
+        console.log(card)
+        setActive(card.active)
     }
+
     return (
-        <Container onClick={(event) => handleClick(event)}>
-            {card.number}
+        <Container onClick={() => handleClick()}>
             <svg viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}>
                 <defs>
                     <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id={gradientId}>
                         <stop stopColor={COLORS.LIGHT_WASSERMANN} offset="0%"/>
                         <stop stopColor={COLORS.GREEN_AGAIN} offset="100%"/>
                     </linearGradient>
+
+                    <pattern id="img1" patternUnits="userSpaceOnUse" width="100" height="100">
+                        <image href="wall.jpg" x="0" y="0" width="100" height="100" />
+                    </pattern>
                 </defs>
                 <FlipCard active={active}>
                 <Inner active={active} size={viewBoxSize}>
                     <Back active={active} fill={getSelector(gradientId)} id="card_bg_rectangle"/>
-                    <Front active={active} src={card.src} />
+                    <Front active={active} src={card.src} fill="#img1"/>
                 </Inner>
                 </FlipCard>
             </svg>

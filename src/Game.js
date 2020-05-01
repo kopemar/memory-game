@@ -10,6 +10,7 @@ export class Game {
                    this.cards.push(new Card(i))
                }
             }
+            this.activeCard = null;
             this.shuffle()
         } else {
             console.error("Not even number of cards")
@@ -36,8 +37,12 @@ export class Game {
 export class Card {
     constructor(number) {
         this.number = number;
-        this.src = Card.image[number]
+        this.src = Card.image[number];
+        this.active = false;
+        this.id = Card.getId();
     }
+
+    isTheSame = (card) => this.equals(card) && this.id === card.id;
 
     equals (card) {
         if (card.hasOwnProperty("number")) {
@@ -46,14 +51,20 @@ export class Card {
         return false
     }
 
+    static counter = 0;
+
+    static getId = () => {
+        return Card.counter++;
+    }
+
     static image = {
         0: `${COLORS.DARK_WASSERMANN}`,
-        1: "",
-        2: "",
-        3: "",
-        4: "",
-        5: "",
-        6: "",
-        7: "",
+        1: `${COLORS.GREEN_AGAIN}`,
+        2: `${COLORS.GRAY_BUT_GREEN}`,
+        3: `${COLORS.ANOTHER_GREEN}`,
+        4: `${COLORS.YELLOW_GREEN}`,
+        5: `${COLORS.WASSERMANN}`,
+        6: `${COLORS.LIGHT_WASSERMANN}`,
+        7: `${COLORS.POISON}`,
     }
 }
