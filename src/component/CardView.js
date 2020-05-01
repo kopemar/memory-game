@@ -52,7 +52,7 @@ const Front = styled.rect`
 
 export const CardView = ({card, clickHandler}) => {
     const [active, setActive] = useState(card.active);
-    const {cCard} = useContext(AppContext);
+    const {cCard, setCCard} = useContext(AppContext);
     console.log(cCard);
 
     const getSelector = (id) => {
@@ -64,12 +64,15 @@ export const CardView = ({card, clickHandler}) => {
     const handleClick = () => {
         clickHandler(card)
         setActive(true);
+
         setTimeout(() => {
+            console.log(card.active)
             setActive(card.active)
         }, 500)
 
         setTimeout(() => {
             setActive(card.discovered)
+            if (!card.discovered) { setCCard(null) }
         }, 1500)
     }
 
@@ -87,9 +90,9 @@ export const CardView = ({card, clickHandler}) => {
                     </pattern>
                 </defs>
                 <FlipCard>
-                    <Inner active={card.isTheSame(cCard) || active} size={viewBoxSize}>
-                        <Back active={card.isTheSame(cCard) || active} fill={getSelector(gradientId)} id="card_bg_rectangle"/>
-                        <Front active={card.isTheSame(cCard) || active} src={card.src} fill="#img1"/>
+                    <Inner active={card.isTheSame(cCard) || active || card.discovered} size={viewBoxSize}>
+                        <Back active={card.isTheSame(cCard) || active || card.discovered} fill={getSelector(gradientId)} id="card_bg_rectangle"/>
+                        <Front active={card.isTheSame(cCard) || active || card.discovered} src={card.src} fill="#img1"/>
                     </Inner>
                 </FlipCard>
             </svg>

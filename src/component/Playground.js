@@ -15,32 +15,35 @@ const PlaygroundContainer = styled.main`
 export const Playground = ({game}) => {
     const cards = [];
 
-    const {setCCard} = useContext(AppContext);
+    const {cCard, setCCard} = useContext(AppContext);
 
     game.cards.forEach((card) => {
-        cards.push(<CardView clickHandler={(card) => handleCardClick(card)} card={new Card(card.number)}/>)})
+        cards.push(<CardView clickHandler={(card) => handleCardClick(card)} card={new Card(card.number)}/>)
+    })
 
     async function handleCardClick(card) {
-        card.active = true;
-        if (game.activeCard === null) {
-            game.activeCard = card;
-            setCCard(card);
-        } else {
-            if (game.activeCard.equals(card)) {
-                game.activeCard.discovered = true
-                card.discovered = true
-                console.log("Match!");
-                game.activeCard = null;
+        if (!card.discovered) {
+            if (cCard === null) {
+                card.active = true;
+                game.activeCard = card;
+                setCCard(card);
             } else {
-                game.activeCard.active = false;
-                card.active = false;
-                game.activeCard = null;
+                if (game.activeCard.equals(card)) {
+                    game.activeCard.discovered = true;
+                    card.discovered = true;
+                    console.log("Match!");
+                    game.activeCard = null;
+                } else {
+                    game.activeCard.active = false;
+                    card.active = false;
+                    game.activeCard = null;
+                }
+                setCCard(null)
             }
-            setCCard(null)
         }
-}
+    }
 
-return <PlaygroundContainer>
-    {cards}
-</PlaygroundContainer>
+    return <PlaygroundContainer>
+        {cards}
+    </PlaygroundContainer>
 };
