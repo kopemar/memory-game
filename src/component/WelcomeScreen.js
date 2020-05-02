@@ -3,23 +3,12 @@ import styled, {css} from "styled-components";
 import {Header} from "./Header";
 import {COLORS, FONT_SIZE, SCREEN, STRING} from "../constant/Constants";
 import {CustomButton} from "./Button";
-
-const FadeIn = styled.div`
-    @keyframes fade-in {
-        from {opacity: 0;}
-        to {opacity: 1;}
-    }
-    animation-name: fade-in;
-    opacity: 0;
-    animation-delay: ${({delay}) => delay ? delay : 0}s;
-    animation-duration: ${({duration}) => duration ? duration : 2}s;
-    animation-fill-mode: forwards;
-`;
+import {FadeIn} from "./FadeIn";
 
 const Container = styled.main`
     max-width: 100%;
     text-align: center;
-    transition: 2s;
+    transition: 1s;
     
     ${({finished}) => finished && css`
         transform: translateX(-100%);
@@ -41,7 +30,7 @@ export const WelcomeScreen = ({onFinished}) => {
 
     const finish = () => {
         setFinished(true)
-        setTimeout(() => {onFinished()}, 2000)
+        setTimeout(() => {onFinished()}, 1000)
     }
 
     return <Container finished={finished}>
