@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {COLORS, FONT_SIZE} from "../constant/Constants";
+import {COLORS, FONT_SIZE, SCREEN} from "../constant/Constants";
 
 const StyledButton = styled.button`
     border: none; 
@@ -12,8 +12,18 @@ const StyledButton = styled.button`
     color: ${COLORS.WHITE};
     text-transform: uppercase;
     font-family: 'Raleway', sans-serif;
+    opacity: 0.5; 
+    transition: 1s; 
+    ${SCREEN.BELOW_PHONE} {
+        min-width: 0;
+        width: 60vw; 
+        opacity: 1;
+    }
+    :hover {
+        opacity: 1;
+    }
 `
 
-export const CustomButton = ({children}) => {
-    return <StyledButton type="button">{children}</StyledButton>
+export const CustomButton = ({children, onClick}) => {
+    return <StyledButton type="button" onClick={(event) => onClick(event)}>{children}</StyledButton>
 }

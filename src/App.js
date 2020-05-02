@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import './App.css';
 import {Game} from "./Game";
 import {Playground} from "./component/Playground";
@@ -11,21 +11,22 @@ import {WelcomeScreen} from "./component/WelcomeScreen";
 
 function App() {
     const [game, setGame] = useState();
-    // !game && setGame(new Game(16));
+    const [welcome, setWelcome] = useState(false);
+    !game && setGame(new Game(16));
 
-    const welcome = <WelcomeScreen/>;
+    const welcomeScreen = <WelcomeScreen onFinished={() => {
+        setWelcome(true)}
+    }/>;
     const field =  game && <>
         <PlayerBar players={game.players}/>
         <Playground game={game} />
     </>;
 
-
-
     return (
         <GlobalContext>
-            {game && <Header collapsed/>}
-            {!game && welcome}
-            {game && field}
+            {welcome && <Header collapsed/>}
+            {welcome === false && welcomeScreen}
+            {welcome && field}
         </GlobalContext>
     );
 }

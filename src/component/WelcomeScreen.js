@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from "styled-components";
+import React, {useState} from 'react'
+import styled, {css} from "styled-components";
 import {Header} from "./Header";
 import {COLORS, FONT_SIZE, SCREEN, STRING} from "../constant/Constants";
 import {CustomButton} from "./Button";
@@ -19,6 +19,11 @@ const FadeIn = styled.div`
 const Container = styled.main`
     max-width: 100%;
     text-align: center;
+    transition: 2s;
+    
+    ${({finished}) => finished && css`
+        transform: translateX(-100%);
+    `}
 `
 
 const WelcomeText = styled.p`
@@ -31,8 +36,15 @@ const WelcomeText = styled.p`
     }
 `
 
-export const WelcomeScreen = () => {
-    return <Container>
+export const WelcomeScreen = ({onFinished}) => {
+    const [finished, setFinished] = useState(false);
+
+    const finish = () => {
+        setFinished(true)
+        setTimeout(() => {onFinished()}, 2000)
+    }
+
+    return <Container finished={finished}>
         <FadeIn >
             <Header/>
         </FadeIn>
@@ -40,7 +52,7 @@ export const WelcomeScreen = () => {
             <WelcomeText>{STRING.WELCOME_TEXT}</WelcomeText>
         </FadeIn>
         <FadeIn delay={2}>
-            <CustomButton>Next</CustomButton>
+            <CustomButton onClick={() => finish()}>Next</CustomButton>
         </FadeIn>
     </Container>
 }
