@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import styled, {css} from 'styled-components';
 import {COLORS} from "../constant/Constants";
 import {AppContext} from "../context/AppContext";
@@ -65,16 +65,21 @@ export const CardView = ({card, clickHandler, timeoutHandler}) => {
     const handleClick = () => {
         clickHandler(card)
         setActive(true);
+        if (card.pairsWith(cCard)) {
+            console.log("clearing timeout")
+            clearTimeout(cCard.timeout);
+        }
 
         setTimeout(() => {
             setActive(card.active)
             if (!discovered) setDiscovered(card.discovered)
         }, 500)
 
-        setTimeout(() => {
+        card.timeout = setTimeout(() => {
             setActive(card.discovered)
             timeoutHandler(card)
-        }, 1500)
+        }, 1500);
+
         console.log(card)
     }
 

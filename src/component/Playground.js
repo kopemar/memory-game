@@ -18,7 +18,7 @@ export const Playground = ({game}) => {
     const {setCCard} = useContext(AppContext);
 
     game.cards.forEach((card) => {
-        cards.push(<CardView clickHandler={(card) => handleCardClick(card)} card={new Card(card.number)}
+        cards.push(<CardView clickHandler={(card) => handleCardClick(card)} card={card}
                              timeoutHandler={(card) => handleTimeout(card)}/>)
     })
 
@@ -40,7 +40,7 @@ export const Playground = ({game}) => {
             game.activeCard = card;
             setCCard(card);
         } else {
-            if (game.activeCard.equals(card)) {
+            if (game.activeCard.pairsWith(card)) {
                 console.log("Match!");
                 if (!card.discovered && game.activeCard.discovered) game.discovered += 2;
                 game.activeCard.discovered = true;

@@ -1,8 +1,15 @@
 import {COLORS} from "./constant/Constants";
 
 export class Game {
+    static game;
+
+    static getGame(count) {
+        Game.game = Game.game === undefined ? new Game(count) : Game.game;
+        return Game.game;
+    }
 
     constructor(count) {
+        console.log("Game constructor")
         this.count = count;
         if (count % 2 === 0) {
             this.cards = [];
@@ -38,16 +45,24 @@ export class Game {
 
 export class Card {
     constructor(number) {
+        console.log("card constructor")
         this.number = number;
         this.src = Card.image[number];
         this.active = false;
         this.id = Card.getId();
         this.discovered = false;
+        this.timeout = null;
     }
 
-    isTheSame = (card) => this.equals(card) && this.id === card.id;
+    isTheSame(card) {
+        return this.valueEquals(card) && this.id === card.id;
+    }
 
-    equals (card) {
+    pairsWith (card) {
+        return this.valueEquals(card) && !this.isTheSame(card);
+    }
+
+    valueEquals (card) {
         if (card === null) return this === null;
         if (card.hasOwnProperty("number")) {
             return card.number === this.number
