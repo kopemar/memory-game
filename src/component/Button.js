@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {COLORS, FONT_SIZE, SCREEN} from "../constant/Constants";
 
 const StyledButton = styled.button`
@@ -14,6 +14,7 @@ const StyledButton = styled.button`
     font-family: 'Raleway', sans-serif;
     opacity: 0.5; 
     transition: 1s; 
+    
     ${SCREEN.BELOW_PHONE} {
         min-width: 0;
         width: 60vw; 
@@ -22,8 +23,13 @@ const StyledButton = styled.button`
     :hover {
         opacity: 1;
     }
+    
+    ${({disabled}) => disabled && css`
+        background-image: linear-gradient(to bottom , ${COLORS.GRAY_BUT_GREEN}, ${COLORS.UGLY_GREEN});
+        
+    `}
 `
 
-export const CustomButton = ({children, onClick}) => {
-    return <StyledButton type="button" onClick={(event) => onClick(event)}>{children}</StyledButton>
+export const CustomButton = ({children, onClick, disabled}) => {
+    return <StyledButton disabled={disabled} type="submit" onClick={(event) => onClick(event)}>{children}</StyledButton>
 }

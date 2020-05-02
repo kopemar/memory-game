@@ -3,11 +3,12 @@ import styled, {css} from 'styled-components'
 import {Subheading} from "../Heading";
 import {MAX_PLAYER_COUNT, STRING} from "../../constant/Constants";
 import {PlayerNumber} from "./PlayerNumber";
+import {CustomButton} from "../Button";
 
 const Container = styled.main`
     transform: translateX(100%);
     transition: 1s; 
-    
+    text-align: center;
     ${({shouldMove}) => shouldMove && css`
         transform: translateX(0%);
     `}
@@ -20,9 +21,16 @@ const Numbers = styled.div`
     justify-content: center;
 `
 
+// const ButtonWrapper = styled.div`
+//     width: 100%;
+//     display: flex;
+//     text-align: center
+//     justify-content: center;
+// `;
+
 export const PlayerCount = () => {
     const [shouldMove, setShouldMove] = useState(false);
-    const [playerCount, setPlayerCount] = useState()
+    const [playerCount, setPlayerCount] = useState(0)
 
     const onSelected = (value) => {
         setPlayerCount(value);
@@ -39,5 +47,6 @@ export const PlayerCount = () => {
         <Numbers>
             {numbers}
         </Numbers>
+        <CustomButton disabled={playerCount === 0} onClick={()=> {}}>Next</CustomButton>
     </Container>
 }

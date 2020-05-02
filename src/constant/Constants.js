@@ -8,6 +8,7 @@ export const COLORS = {
     YELLOW_GREEN: "#D8D365",
     ANOTHER_GREEN: "#B0DD70",
     GRAY_BUT_GREEN: "#9CAF8C",
+    UGLY_GREEN: "#B7C59C",
     SILLY_GREEN: "#96E6A1",
     GREEN: "#93D559",
     TURQUOISE: "#1AD7E4",
