@@ -1,4 +1,5 @@
 body {
+  font-family: 'Raleway', sans-serif;
   background-image: linear-gradient(to top right, #96E6A1, #D4FC79);
   background-attachment: fixed;
 }

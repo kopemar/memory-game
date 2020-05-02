@@ -5,8 +5,8 @@ const Container = styled.header`
     text-align: center; 
     margin: 5px;
 `;
-export const Header = () => {
+export const Header = ({collapsed}) => {
     return <Container>
-        <img src="img/logo_small.svg"/>
+        {collapsed && <img src="img/logo_small.svg" alt="Logo"/>}
     </Container>
 }

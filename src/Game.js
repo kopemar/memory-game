@@ -5,6 +5,7 @@ export class Game {
     constructor(count) {
         console.log("Game constructor")
         this.count = count;
+        this.players = [new Player("Homer"), new Player("Marge"), new Player("Lisa"), new Player("Bart")]
         if (count % 2 === 0) {
             this.cards = [];
             for (let i = 0; i < count/2; i++) {
