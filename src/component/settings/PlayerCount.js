@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import styled, {css} from 'styled-components'
 import {Subheading} from "../Heading";
-import {MAX_PLAYER_COUNT, STRING} from "../../constant/Constants";
+import {MAX_PLAYER_COUNT, MIN_PLAYER_COUNT, STRING} from "../../constant/Constants";
 import {PlayerNumber} from "./PlayerNumber";
 import {CustomButton} from "../Button";
 
@@ -21,14 +21,7 @@ const Numbers = styled.div`
     justify-content: center;
 `
 
-// const ButtonWrapper = styled.div`
-//     width: 100%;
-//     display: flex;
-//     text-align: center
-//     justify-content: center;
-// `;
-
-export const PlayerCount = () => {
+export const PlayerCount = ({onFinished}) => {
     const [shouldMove, setShouldMove] = useState(false);
     const [playerCount, setPlayerCount] = useState(0)
 
@@ -37,7 +30,7 @@ export const PlayerCount = () => {
     };
 
     const numbers = [];
-    for (let i = 1; i <= MAX_PLAYER_COUNT; i++) {
+    for (let i = MIN_PLAYER_COUNT; i <= MAX_PLAYER_COUNT; i++) {
         numbers.push(<PlayerNumber value={i} enabled={playerCount === i} onSelect={(value) => onSelected(value)}/>)
     }
 
@@ -47,6 +40,6 @@ export const PlayerCount = () => {
         <Numbers>
             {numbers}
         </Numbers>
-        <CustomButton disabled={playerCount === 0} onClick={()=> {}}>Next</CustomButton>
+        <CustomButton disabled={playerCount === 0} onClick={()=> {onFinished(playerCount)}}>Next</CustomButton>
     </Container>
 }

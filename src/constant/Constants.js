@@ -1,3 +1,5 @@
+import {css} from 'styled-components'
+
 export const COLORS = {
     WASSERMANN: "#6AA331",
     LIGHT_WASSERMANN: "#ACD87E",
@@ -36,7 +38,21 @@ export const SCREEN = {
 
 export const STRING = {
     WELCOME_TEXT: "Hello and welcome to the memory game!",
-    NUMBER_OF_PLAYERS: "Select number of players"
+    NUMBER_OF_PLAYERS: "Select number of players",
+    NAME_OF_PLAYER: "Insert name of Player"
 }
 
 export const MAX_PLAYER_COUNT = 4;
+export const MIN_PLAYER_COUNT = 2;
+
+export const REJECT_ANIMATION = css`
+            @keyframes reject {
+                0% {transform: translateX(15px);}
+                50% {transform: translateX(-15px);}
+                100% {transform: translateX(0px)}
+            }
+            animation-name: reject;
+            animation-delay: ${({delay}) => delay ? delay : 0}s;
+            animation-duration: ${({duration}) => duration ? duration : 0.5}s;
+            animation-fill-mode: forwards;
+            `

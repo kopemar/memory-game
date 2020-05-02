@@ -8,6 +8,7 @@ import {PlayerBar} from "./component/game/PlayerBar";
 import {WelcomeScreen} from "./component/WelcomeScreen";
 import {PlayerCount} from "./component/settings/PlayerCount";
 import {FadeIn} from "./component/FadeIn";
+import {PlayerNames} from "./component/settings/PlayerNames";
 
 function App() {
     const [game, setGame] = useState();
@@ -38,9 +39,9 @@ function App() {
                     <WelcomeScreen onFinished={() => {finishWelcomeScreen()}}/>
                 </>}
             {welcome && playerCount === 0 && <>
-                <PlayerCount/>
+                <PlayerCount onFinished={(playerCount) => setPlayerCount(playerCount)}/>
                 </>}
-            {welcome && playerCount > 0 && field}
+            {welcome && playerCount > 0 && <><PlayerNames count={playerCount}/></>}
         </GlobalContext>
     );
 }

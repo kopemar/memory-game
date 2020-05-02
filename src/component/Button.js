@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import {COLORS, FONT_SIZE, SCREEN} from "../constant/Constants";
+import {COLORS, FONT_SIZE, REJECT_ANIMATION, SCREEN} from "../constant/Constants";
 
 const StyledButton = styled.button`
     border: none; 
@@ -27,9 +27,13 @@ const StyledButton = styled.button`
     ${({disabled}) => disabled && css`
         background-image: linear-gradient(to bottom , ${COLORS.GRAY_BUT_GREEN}, ${COLORS.UGLY_GREEN});
         
+        &:hover {
+            opacity: 0.5;
+            ${REJECT_ANIMATION}
+        }
     `}
 `
 
 export const CustomButton = ({children, onClick, disabled}) => {
-    return <StyledButton disabled={disabled} type="submit" onClick={(event) => onClick(event)}>{children}</StyledButton>
+    return <StyledButton disabled={disabled} type="submit" onClick={(event) => {if (!disabled) onClick(event)}}>{children}</StyledButton>
 }
