@@ -1,12 +1,6 @@
 import {COLORS} from "./constant/Constants";
 
 export class Game {
-    static game;
-
-    static getGame(count) {
-        Game.game = Game.game === undefined ? new Game(count) : Game.game;
-        return Game.game;
-    }
 
     constructor(count) {
         console.log("Game constructor")

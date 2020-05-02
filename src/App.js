@@ -4,7 +4,7 @@ import {Game} from "./Game";
 import {Playground} from "./component/Playground";
 import {GlobalContext} from "./context/AppContext";
 
-const game = Game.getGame(16);
+const game = new Game(16);
 
 function App() {
     return (
