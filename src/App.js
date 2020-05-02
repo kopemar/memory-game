@@ -33,6 +33,7 @@ function App() {
             <FadeIn>
                 <Header collapsed={collapsed}/>
             </FadeIn>
+
             {!welcome && <>
                     <WelcomeScreen onFinished={() => {finishWelcomeScreen()}}/>
                 </>}

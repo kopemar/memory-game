@@ -4,6 +4,7 @@ import {Header} from "./Header";
 import {COLORS, FONT_SIZE, SCREEN, STRING} from "../constant/Constants";
 import {CustomButton} from "./Button";
 import {FadeIn} from "./FadeIn";
+import {Subheading} from "./Heading";
 
 const Container = styled.main`
     max-width: 100%;
@@ -15,15 +16,7 @@ const Container = styled.main`
     `}
 `
 
-const WelcomeText = styled.p`
-    margin: 50px;
-    color: ${COLORS.WHITE}; 
-    font-size: ${FONT_SIZE.XLARGE};
-    
-    ${SCREEN.BELOW_PHONE} {
-        font-size: ${FONT_SIZE.LARGE};
-    }
-`
+
 
 export const WelcomeScreen = ({onFinished}) => {
     const [finished, setFinished] = useState(false);
@@ -35,7 +28,7 @@ export const WelcomeScreen = ({onFinished}) => {
 
     return <Container finished={finished}>
         <FadeIn delay={1}>
-            <WelcomeText>{STRING.WELCOME_TEXT}</WelcomeText>
+            <Subheading>{STRING.WELCOME_TEXT}</Subheading>
         </FadeIn>
         <FadeIn delay={2}>
             <CustomButton onClick={() => finish()}>Next</CustomButton>

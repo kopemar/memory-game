@@ -9,6 +9,7 @@ export const COLORS = {
     ANOTHER_GREEN: "#B0DD70",
     GRAY_BUT_GREEN: "#9CAF8C",
     SILLY_GREEN: "#96E6A1",
+    GREEN: "#93D559",
     TURQUOISE: "#1AD7E4",
     BARBIE: "#E41ABB",
     VIOLETTE: "#7C7BC1",
@@ -18,6 +19,7 @@ export const COLORS = {
     MARINE: "#12407B",
     ORANGE: "#FF6200",
     WHITE: "#FFFFFF",
+    WHITE_TRANSPARENT: "rgb(255, 255, 255, 50)",
     GRAY: "#BCBDBC"
 }
 
@@ -32,5 +34,6 @@ export const SCREEN = {
 }
 
 export const STRING = {
-    WELCOME_TEXT: "Hello and welcome to the memory game!"
+    WELCOME_TEXT: "Hello and welcome to the memory game!",
+    NUMBER_OF_PLAYERS: "Select number of players"
 }
