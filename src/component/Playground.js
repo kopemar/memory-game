@@ -7,7 +7,7 @@ import {AppContext} from "../context/AppContext";
 const PlaygroundContainer = styled.main`
     display: flex;
     flex-wrap: wrap;
-    max-width: 800px;
+    max-width: 700px;
     padding: 10px
 `;
 
@@ -15,31 +15,48 @@ const PlaygroundContainer = styled.main`
 export const Playground = ({game}) => {
     const cards = [];
 
-    const {cCard, setCCard} = useContext(AppContext);
+    const {setCCard} = useContext(AppContext);
 
     game.cards.forEach((card) => {
-        cards.push(<CardView clickHandler={(card) => handleCardClick(card)} card={new Card(card.number)}/>)
+        cards.push(<CardView clickHandler={(card) => handleCardClick(card)} card={new Card(card.number)}
+                             timeoutHandler={(card) => handleTimeout(card)}/>)
     })
 
-    async function handleCardClick(card) {
+    const handleTimeout = (card) => {
+        console.log("TIMEOUT", card)
         if (!card.discovered) {
-            if (cCard === null) {
-                card.active = true;
-                game.activeCard = card;
-                setCCard(card);
+            card.active = false;
+        }
+        setCCard(null);
+        game.activeCard = null;
+
+    }
+
+    function handleCardClick(card) {
+        card.active = true;
+        console.log(game);
+        // no card active
+        if (game.activeCard === null) {
+            game.activeCard = card;
+            setCCard(card);
+        } else {
+            if (game.activeCard.equals(card)) {
+                console.log("Match!");
+                if (!card.discovered && game.activeCard.discovered) game.discovered += 2;
+                game.activeCard.discovered = true;
+                card.discovered = true;
             } else {
-                if (game.activeCard.equals(card)) {
-                    game.activeCard.discovered = true;
-                    card.discovered = true;
-                    console.log("Match!");
-                    game.activeCard = null;
-                } else {
-                    game.activeCard.active = false;
-                    card.active = false;
-                    game.activeCard = null;
-                }
-                setCCard(null)
+                game.activeCard.active = false;
+                card.active = false;
             }
+            game.activeCard = null;
+            setCCard(null)
+        }
+        console.log(game);
+
+        if (game.isWon()) {
+            console.log("YOU WON!")
+            alert("You won!")
         }
     }
 

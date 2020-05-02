@@ -3,6 +3,7 @@ import {COLORS} from "./constant/Constants";
 export class Game {
 
     constructor(count) {
+        this.count = count;
         if (count % 2 === 0) {
             this.cards = [];
             for (let i = 0; i < count/2; i++) {
@@ -11,11 +12,14 @@ export class Game {
                }
             }
             this.activeCard = null;
+            this.discovered = 0;
             this.shuffle()
         } else {
             console.error("Not even number of cards")
         }
     }
+
+    isWon = () => this.count === this.discovered;
 
     shuffle() {
         let counter = this.cards.length;
@@ -29,8 +33,6 @@ export class Game {
             this.cards[counter] = this.cards[index];
             this.cards[index] = temp;
         }
-
-        console.log(this.cards);
     }
 }
 

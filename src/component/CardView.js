@@ -6,6 +6,7 @@ import {AppContext} from "../context/AppContext";
 const Container = styled.div`
     box-sizing: border-box;
     width: 25%;
+    padding: 10px;
     border-radius: 10px;
     perspective: 1000px;
 `;
@@ -26,8 +27,8 @@ const FlipCard = styled.g`
 
 
 const Back = styled.rect`
-    width: 60%;
-    height: 60%;
+    width: 100%;
+    height: 100%;
     rx: 10;
     fill: url(${({fill}) => fill});
     stroke: ${({active}) => active ? COLORS.DARK_WASSERMANN : COLORS.WASSERMANN}; 
@@ -40,8 +41,8 @@ const Back = styled.rect`
 `
 
 const Front = styled.rect`
-    width: 60%;
-    height: 60%;
+    width: 100%;
+    height: 100%;
     rx: 10;
     fill: ${({src}) => src};
     stroke: ${({active}) => !active ? COLORS.DARK_WASSERMANN : COLORS.WASSERMANN}; 
@@ -50,10 +51,10 @@ const Front = styled.rect`
     transform: rotateY(180deg);
 `
 
-export const CardView = ({card, clickHandler}) => {
+export const CardView = ({card, clickHandler, timeoutHandler}) => {
     const [active, setActive] = useState(card.active);
-    const {cCard, setCCard} = useContext(AppContext);
-    console.log(cCard);
+    const [discovered, setDiscovered] = useState(false)
+    const {cCard} = useContext(AppContext);
 
     const getSelector = (id) => {
         return `#${id}`
@@ -66,18 +67,19 @@ export const CardView = ({card, clickHandler}) => {
         setActive(true);
 
         setTimeout(() => {
-            console.log(card.active)
             setActive(card.active)
+            if (!discovered) setDiscovered(card.discovered)
         }, 500)
 
         setTimeout(() => {
             setActive(card.discovered)
-            if (!card.discovered) { setCCard(null) }
+            timeoutHandler(card)
         }, 1500)
+        console.log(card)
     }
 
     return (
-        <Container onClick={() => handleClick()}>
+        <Container onClick={() => {if (!card.discovered) handleClick()}}>
             <svg viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}>
                 <defs>
                     <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id={gradientId}>
@@ -90,9 +92,9 @@ export const CardView = ({card, clickHandler}) => {
                     </pattern>
                 </defs>
                 <FlipCard>
-                    <Inner active={card.isTheSame(cCard) || active || card.discovered} size={viewBoxSize}>
-                        <Back active={card.isTheSame(cCard) || active || card.discovered} fill={getSelector(gradientId)} id="card_bg_rectangle"/>
-                        <Front active={card.isTheSame(cCard) || active || card.discovered} src={card.src} fill="#img1"/>
+                    <Inner active={card.isTheSame(cCard) || active || discovered} size={viewBoxSize}>
+                        <Back active={card.isTheSame(cCard) || active || discovered} fill={getSelector(gradientId)} id="card_bg_rectangle"/>
+                        <Front active={card.isTheSame(cCard) || active || discovered} src={card.src} fill="#img1"/>
                     </Inner>
                 </FlipCard>
             </svg>
