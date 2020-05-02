@@ -59,12 +59,14 @@ export const CardView = ({card, clickHandler, timeoutHandler}) => {
     const getSelector = (id) => {
         return `#${id}`
     }
+
     const viewBoxSize = 160;
     const gradientId = "green_linear_gradient";
 
     const handleClick = () => {
         clickHandler(card)
         setActive(true);
+
         if (card.pairsWith(cCard)) {
             console.log("clearing timeout")
             clearTimeout(cCard.timeout);
