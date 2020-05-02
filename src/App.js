@@ -1,20 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {Game} from "./Game";
 import {Playground} from "./component/Playground";
 import {GlobalContext} from "./context/AppContext";
 import {Header} from "./component/Header";
 import {PlayerBar} from "./component/PlayerBar";
+import {WelcomeScreen} from "./component/WelcomeScreen";
 
-const game = new Game(16);
+
 
 function App() {
+    const [game, setGame] = useState();
+    // !game && setGame(new Game(16));
+
+    const welcome = <WelcomeScreen/>;
+    const field =  game && <>
+        <PlayerBar players={game.players}/>
+        <Playground game={game} />
+    </>;
+
+
+
     return (
         <GlobalContext>
-            <Header collapsed/>
-            <PlayerBar players={game.players}/>
-
-            <Playground game={game} />
+            {game && <Header collapsed/>}
+            {!game && welcome}
+            {game && field}
         </GlobalContext>
     );
 }

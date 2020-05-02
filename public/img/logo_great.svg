@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="401px" height="263px" viewBox="0 0 401 263" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>logo_great</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy-2" transform="translate(-519.000000, -104.000000)">
+            <g id="logo_great" transform="translate(519.000000, 104.000000)">
+                <g id="Group-9" transform="translate(201.242641, 127.000000) rotate(135.000000) translate(-201.242641, -127.000000) translate(56.242641, -12.000000)">
+                    <rect id="Rectangle" stroke="#B1AD4A" stroke-width="5" fill="#D8D365" x="3.11774901" y="3.48171004" width="154" height="154"></rect>
+                    <rect id="Rectangle" stroke="#89B945" stroke-width="5" fill="#B0DD70" x="107.497475" y="95.1335137" width="180" height="180"></rect>
+                    <text id="M" transform="translate(198.204581, 185.133514) rotate(-180.000000) translate(-198.204581, -185.133514) " font-family="Lato-Regular, Lato" font-size="100" font-weight="normal" letter-spacing="6.66666667" fill="#ADC774">
+                        <tspan x="147.204581" y="224.133514">M</tspan>
+                    </text>
+                    <text id="B" transform="translate(79.826502, 58.270152) scale(1, -1) rotate(-268.000000) translate(-79.826502, -58.270152) " font-family="Lato-Regular, Lato" font-size="100" font-weight="normal" letter-spacing="6.66666667" fill="#D3C069">
+                        <tspan x="43.4146157" y="97.2701525">B</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

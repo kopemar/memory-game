@@ -3,6 +3,7 @@ import styled, {css} from 'styled-components';
 import {COLORS, FONT_SIZE, SCREEN} from "../constant/Constants";
 
 const Container = styled.div`
+    position: relative;
     display: flex;
     background: ${COLORS.WHITE}; 
     min-height: 100px;
@@ -16,7 +17,6 @@ const Container = styled.div`
 `;
 
 const PlayerField = styled.div`
-    position: relative;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -44,9 +44,10 @@ const Indicator = styled.div`
     background: ${COLORS.SILLY_GREEN};
     position: absolute;
     height: 10px;
-    width: 60%;
+    width: 100%;
     right: 0;
     bottom: 0;
+    margin-bottom: 4px;
 `
 
 export const PlayerBar = ({players}) => {
@@ -54,9 +55,10 @@ export const PlayerBar = ({players}) => {
     const fields = [];
     players && players.forEach((player) => fields.push(<PlayerField>
         <PlayerName active={player === activePlayer}>{player.name}</PlayerName>
-        {player === activePlayer && <Indicator/>}
-    </PlayerField>));
+    </PlayerField>
+    ));
     return <Container>
         {fields}
+        <Indicator/>
     </Container>
 }
