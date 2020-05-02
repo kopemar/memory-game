@@ -37,3 +37,5 @@ export const STRING = {
     WELCOME_TEXT: "Hello and welcome to the memory game!",
     NUMBER_OF_PLAYERS: "Select number of players"
 }
+
+export const MAX_PLAYER_COUNT = 4;
