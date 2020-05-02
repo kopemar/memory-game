@@ -3,12 +3,17 @@ import styled from 'styled-components';
 import {CardView} from "./CardView";
 import {Card} from "../Game";
 import {AppContext} from "../context/AppContext";
+import {COLORS} from "../constant/Constants";
 
 const PlaygroundContainer = styled.main`
     display: flex;
     flex-wrap: wrap;
     max-width: 700px;
-    padding: 10px
+    padding: 10px;
+    background: ${COLORS.WHITE};
+    border-radius: 4px;
+    border: 1px solid ${COLORS.GRAY_BUT_GREEN};
+    margin: 10px;
 `;
 
 

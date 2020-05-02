@@ -14,5 +14,6 @@ export const COLORS = {
     DEEP_PURPLE: "#482666",
     JUST_GOLD: "#FFD100",
     MARINE: "#12407B",
-    ORANGE: "#FF6200"
+    ORANGE: "#FF6200",
+    WHITE: "#FFFFFF"
 }
