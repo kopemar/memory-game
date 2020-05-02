@@ -4,6 +4,7 @@ export const COLORS = {
     DARK_WASSERMANN: "#4a7524",
     GREEN_AGAIN: "#7AB341",
     POISON: "#B8FF2C",
+    POISONOUS: "#A0FF4F",
     YELLOW_GREEN: "#D8D365",
     ANOTHER_GREEN: "#B0DD70",
     GRAY_BUT_GREEN: "#9CAF8C",
@@ -28,4 +29,8 @@ export const FONT_SIZE = {
 export const SCREEN = {
     ABOVE_TABLET: "@media (min-width: 1000px)",
     BELOW_PHONE: "@media (max-width: 700px)"
+}
+
+export const STRING = {
+    WELCOME_TEXT: "Hello and welcome to the memory game!"
 }

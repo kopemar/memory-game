@@ -7,7 +7,6 @@ const Container = styled.header`
     max-width: 100%;
 `;
 
-
 export const Header = ({collapsed}) => {
     const src = collapsed ? "img/logo_small.svg" : "img/logo_great.svg"
     return <Container>
