@@ -1,9 +1,9 @@
 import React, {useContext} from 'react';
 import styled from 'styled-components';
 import {CardView} from "./CardView";
-import {Card} from "../Game";
-import {AppContext} from "../context/AppContext";
-import {COLORS} from "../constant/Constants";
+import {Card} from "../../Game";
+import {AppContext} from "../../context/AppContext";
+import {COLORS} from "../../constant/Constants";
 
 const PlaygroundContainer = styled.main`
     display: flex;

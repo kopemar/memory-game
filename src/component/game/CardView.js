@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import styled, {css} from 'styled-components';
-import {COLORS} from "../constant/Constants";
-import {AppContext} from "../context/AppContext";
+import {COLORS} from "../../constant/Constants";
+import {AppContext} from "../../context/AppContext";
 
 const Container = styled.div`
     box-sizing: border-box;

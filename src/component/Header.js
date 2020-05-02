@@ -18,9 +18,26 @@ const Container = styled.header`
     }
 `;
 
+const SmallLogo = styled.h1`
+    text-indent: -9999px;
+    margin: auto;
+    width: 401px; 
+    height: 263px;
+    border: none;
+    background: url("img/logo_great.svg");
+    transition: 1s;
+    ${({collapsed}) => collapsed && css`
+        width: 134px;
+        height: 87px; 
+        background: url("img/logo_small.svg");
+    `}
+`
+
 export const Header = ({collapsed}) => {
-    const src = collapsed ? "img/logo_small.svg" : "img/logo_great.svg"
     return <Container>
-        <img src={src} alt="Logo"/>
+        <SmallLogo collapsed={collapsed}>
+            Memory Board Game
+        </SmallLogo>
+
     </Container>
 }

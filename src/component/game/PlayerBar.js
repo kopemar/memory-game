@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
-import {COLORS, FONT_SIZE, SCREEN} from "../constant/Constants";
+import {COLORS, FONT_SIZE, SCREEN} from "../../constant/Constants";
 
 const Container = styled.div`
     position: relative;

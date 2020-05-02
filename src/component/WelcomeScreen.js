@@ -30,13 +30,10 @@ export const WelcomeScreen = ({onFinished}) => {
 
     const finish = () => {
         setFinished(true)
-        setTimeout(() => {onFinished()}, 1000)
+        onFinished()
     }
 
     return <Container finished={finished}>
-        <FadeIn >
-            <Header/>
-        </FadeIn>
         <FadeIn delay={1}>
             <WelcomeText>{STRING.WELCOME_TEXT}</WelcomeText>
         </FadeIn>
