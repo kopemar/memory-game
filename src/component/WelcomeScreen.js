@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import styled, {css} from "styled-components";
-import {Header} from "./Header";
-import {COLORS, FONT_SIZE, SCREEN, STRING} from "../constant/Constants";
+import {STRING} from "../constant/Constants";
 import {CustomButton} from "./Button";
 import {FadeIn} from "./FadeIn";
 import {Subheading} from "./Heading";
@@ -15,8 +14,6 @@ const Container = styled.main`
         transform: translateX(-100%);
     `}
 `
-
-
 
 export const WelcomeScreen = ({onFinished}) => {
     const [finished, setFinished] = useState(false);

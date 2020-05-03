@@ -4,6 +4,7 @@ import {Subheading} from "../Heading";
 import {COLORS, FONT_SIZE, SCREEN, STRING} from "../../constant/Constants";
 import {CustomButton} from "../Button";
 import {MoveFromRight} from "../FadeIn";
+import {Player} from "../../Game";
 
 const Container = styled.div`
     
@@ -11,7 +12,6 @@ const Container = styled.div`
 
 const FormContainer = styled.main`
     width: 100vw;
-    
     
     ${({active}) => active && css`
         transform: translateX(-${(active - 1) * 100}%);
@@ -160,17 +160,16 @@ class PlayerForm extends Component {
 
 }
 
-export const PlayerNames = ({count}) => {
+export const PlayerNames = ({count, onFinished}) => {
     const [active, setActive] = useState(1);
     const [players] = useState([]);
     const forms = [];
     const indicators = [];
 
-    // setTimeout(()=> setActive(1), 500);
-
     const onSubmit = (value) => {
-        players[value.number] = value.name;
+        players[value.number] = new Player(value.name);
         if (value.number < count) setActive(value.number + 1)
+        else if (value.number === count) onFinished && onFinished(players)
     }
 
     for (let i = 1; i <= count; i++) {

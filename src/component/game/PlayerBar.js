@@ -51,12 +51,15 @@ const Indicator = styled.div`
 `
 
 export const PlayerBar = ({players}) => {
-    const [activePlayer, setActivePlayer] = useState(players[0])
+    console.log(players);
+    const [activePlayer, setActivePlayer] = useState(players[1])
     const fields = [];
-    players && players.forEach((player) => fields.push(<PlayerField>
-        <PlayerName active={player === activePlayer}>{player.name}</PlayerName>
-    </PlayerField>
-    ));
+
+    for (let i = 1; i <= players.length; i++) {
+        const player = players[i];
+        player && fields.push(<PlayerField><PlayerName active={player === activePlayer}>{player.name}</PlayerName></PlayerField>)
+    }
+
     return <Container>
         {fields}
         <Indicator/>

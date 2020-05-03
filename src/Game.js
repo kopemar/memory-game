@@ -2,10 +2,10 @@ import {COLORS} from "./constant/Constants";
 
 export class Game {
 
-    constructor(count) {
+    constructor(count, players) {
         console.log("Game constructor")
         this.count = count;
-        this.players = [new Player("Homer"), new Player("Marge"), new Player("Lisa"), new Player("Bart")]
+        this.players = players;
         if (count % 2 === 0) {
             this.cards = [];
             for (let i = 0; i < count/2; i++) {
@@ -19,6 +19,7 @@ export class Game {
         } else {
             console.error("Not even number of cards")
         }
+        console.log(this)
     }
 
     isWon = () => this.count === this.discovered;
@@ -83,7 +84,7 @@ export class Card {
     }
 }
 
-class Player {
+export class Player {
     constructor(name) {
         this.name = name;
         this.score = 0;
