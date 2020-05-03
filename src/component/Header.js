@@ -25,6 +25,7 @@ const SmallLogo = styled.h1`
     height: 263px;
     border: none;
     background: url("img/logo_great.svg");
+    cursor: pointer;
     transition: 1s;
     ${({collapsed}) => collapsed && css`
         width: 134px;
@@ -35,8 +36,11 @@ const SmallLogo = styled.h1`
 `
 
 export const Header = ({collapsed}) => {
+    const reset = () => {
+        window.location.reload()
+    }
     return <Container>
-        <SmallLogo collapsed={collapsed}>
+        <SmallLogo collapsed={collapsed} onClick={() => {reset()}}>
             Memory Board Game
         </SmallLogo>
 
