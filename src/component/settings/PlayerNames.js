@@ -3,9 +3,16 @@ import styled, {css} from 'styled-components';
 import {Subheading} from "../Heading";
 import {COLORS, FONT_SIZE, SCREEN, STRING} from "../../constant/Constants";
 import {CustomButton} from "../Button";
+import {MoveFromRight} from "../FadeIn";
 
-const Container = styled.main`
+const Container = styled.div`
+    
+`
+
+const FormContainer = styled.main`
     width: 100vw;
+    
+    
     ${({active}) => active && css`
         transform: translateX(-${(active - 1) * 100}%);
     `}
@@ -20,8 +27,6 @@ const FormSection = styled.section`
     ${({number}) => number && css`
         left: ${(number - 1) * 100}%;
     `}
-    
-    transition: 2s; 
 `
 
 const TextField = styled.input`
@@ -62,11 +67,10 @@ const Form = styled.form`
     text-align: center; 
 `;
 
-const Indicators = styled.nav`
-    position: absolute; 
-    right: 50%;
-    left: 50%; 
-    bottom: 0;
+const Indicators = styled.div`
+    // position: absolute; 
+    // right: 50%;
+    // left: 50%; 
     display: flex;
     align-items: center;
     text-align: center; 
@@ -77,9 +81,11 @@ const Circle = styled.circle`
     fill: ${COLORS.WHITE};
     transition: 1s;
     
-    &:hover {
-        fill: ${COLORS.GREEN_AGAIN}
-    }
+    ${({disabled, active}) => {
+    return disabled && !active && css`
+        fill: ${COLORS.UGLY_GREEN}
+    `
+}}
     
     ${({active}) => active && css`
         fill: ${COLORS.POISONOUS}
@@ -87,14 +93,20 @@ const Circle = styled.circle`
 `
 
 const IndicatorWrapper = styled.div`
-
     margin: 10px;
 `
 
-const Indicator = ({active, onClick}) => {
-    return <IndicatorWrapper onClick={() => onClick()}>
+const IndicatorsWrapper = styled(MoveFromRight)`
+    width: 100vw;
+    position: absolute; 
+    bottom: 0;
+`
+
+
+const Indicator = ({active, disabled}) => {
+    return <IndicatorWrapper>
         <svg width="22px" height="22px" viewBox="0 0 22 22">
-            <Circle cx="11" cy="11" r="8" active={active}/>
+            <Circle cx="11" cy="11" r="8" active={active} disabled={disabled}/>
         </svg>
     </IndicatorWrapper>
 }
@@ -150,28 +162,37 @@ class PlayerForm extends Component {
 
 export const PlayerNames = ({count}) => {
     const [active, setActive] = useState(1);
+    const [players] = useState([]);
     const forms = [];
     const indicators = [];
 
+    // setTimeout(()=> setActive(1), 500);
+
     const onSubmit = (value) => {
-        console.log(value)
+        players[value.number] = value.name;
         if (value.number < count) setActive(value.number + 1)
     }
 
     for (let i = 1; i <= count; i++) {
-        indicators.push(<Indicator onClick={() => {
-            console.log(active);
-            setActive(i)
-        }} active={active === i}/>);
+        let disabled = players[i] === undefined || players[i].length === 0;
+        indicators.push(
+            <Indicator
+                active={active === i}
+                disabled={disabled}
+            />);
         forms.push(<PlayerForm filled={i < active} number={i} active={active === i}
                                onSubmit={(value) => onSubmit(value)}/>)
     }
-    return <>
-        <Container active={active}>
-            {forms}
-        </Container>
-        <Indicators>
-            {indicators}
-        </Indicators>
-    </>
+    return <Container>
+        <MoveFromRight>
+            <FormContainer active={active}>
+                {forms}
+            </FormContainer>
+        </MoveFromRight>
+        <IndicatorsWrapper>
+            <Indicators>
+                {indicators}
+            </Indicators>
+        </IndicatorsWrapper>
+    </Container>
 };
