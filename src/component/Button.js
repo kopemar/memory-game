@@ -14,18 +14,21 @@ const StyledButton = styled.button`
     font-family: 'Raleway', sans-serif;
     opacity: 0.5; 
     transition: 1s; 
+    cursor: pointer; 
     
     ${SCREEN.BELOW_PHONE} {
         min-width: 0;
         width: 60vw; 
         opacity: 1;
     }
+    
     :hover {
         opacity: 1;
     }
     
     ${({disabled}) => disabled && css`
         background-image: linear-gradient(to bottom , ${COLORS.GRAY_BUT_GREEN}, ${COLORS.UGLY_GREEN});
+        cursor: not-allowed; 
         
         &:hover {
             opacity: 0.5;
@@ -35,5 +38,5 @@ const StyledButton = styled.button`
 `
 
 export const CustomButton = ({children, onClick, disabled}) => {
-    return <StyledButton disabled={disabled} type="submit" onClick={(event) => {if (!disabled) onClick(event)}}>{children}</StyledButton>
+    return <StyledButton disabled={disabled} type="submit" onClick={(event) => {if (!disabled && onClick) onClick(event)}}>{children}</StyledButton>
 }

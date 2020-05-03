@@ -29,7 +29,8 @@ const SmallLogo = styled.h1`
     ${({collapsed}) => collapsed && css`
         width: 134px;
         height: 87px; 
-        background: url("img/logo_small.svg");
+        background: url("img/logo_small.svg") no-repeat;
+        background-size: cover;
     `}
 `
 
