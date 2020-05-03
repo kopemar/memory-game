@@ -72,12 +72,8 @@ export const CardView = ({card, clickHandler, timeoutHandler}) => {
             clearTimeout(cCard.timeout);
         }
 
-        setTimeout(() => {
-            setActive(card.active)
-            if (!discovered) setDiscovered(card.discovered)
-        }, 500)
-
         card.timeout = setTimeout(() => {
+            if (!discovered) setDiscovered(card.discovered)
             setActive(card.discovered)
             timeoutHandler(card)
         }, 1500);
