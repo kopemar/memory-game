@@ -5,20 +5,23 @@ import {COLORS, FONT_SIZE, SCREEN, STRING} from "../../constant/Constants";
 import {CustomButton} from "../Button";
 
 const Container = styled.main`
-    width: 100%;
-    display: flex;
-    // transform: translateX(100%);
-    overflow: hidden;
+    width: 100vw;
+    ${({active}) => active && css`
+        transform: translateX(-${(active - 1) * 100}%);
+    `}
+    transition: 2s; 
 `;
 
 const FormSection = styled.section`
-    flex-grow: 1; 
-    display: none; 
+    width: 100vw;
+    display: inline-block;
+    position: absolute; 
     
-    ${({active}) => active && css`
-        display: block; 
+    ${({number}) => number && css`
+        left: ${(number - 1) * 100}%;
     `}
     
+    transition: 2s; 
 `
 
 const TextField = styled.input`
@@ -59,12 +62,50 @@ const Form = styled.form`
     text-align: center; 
 `;
 
+const Indicators = styled.nav`
+    position: absolute; 
+    right: 50%;
+    left: 50%; 
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    text-align: center; 
+    justify-content: center;
+`;
+
+const Circle = styled.circle`
+    fill: ${COLORS.WHITE};
+    transition: 1s;
+    
+    &:hover {
+        fill: ${COLORS.GREEN_AGAIN}
+    }
+    
+    ${({active}) => active && css`
+        fill: ${COLORS.POISONOUS}
+    `}
+`
+
+const IndicatorWrapper = styled.div`
+
+    margin: 10px;
+`
+
+const Indicator = ({active, onClick}) => {
+    return <IndicatorWrapper onClick={() => onClick()}>
+        <svg width="22px" height="22px" viewBox="0 0 22 22">
+            <Circle cx="11" cy="11" r="8" active={active}/>
+        </svg>
+    </IndicatorWrapper>
+}
+
 class PlayerForm extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            name: null
+            name: null,
+            number: this.props.number,
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -83,13 +124,13 @@ class PlayerForm extends Component {
     render() {
         const {name} = this.state;
         return (
-            <FormSection active={this.props.active}>
+            <FormSection number={this.state.number}>
                 <Subheading>{STRING.NAME_OF_PLAYER} {this.props.number}</Subheading>
                 <Form
-
                     onSubmit={(e) => {
-                    e.preventDefault()
-                }}>
+                        this.props.onSubmit(this.state);
+                        e.preventDefault()
+                    }}>
                     <TextField
                         autoComplete={'off'}
                         autocomplete="off"
@@ -108,12 +149,29 @@ class PlayerForm extends Component {
 }
 
 export const PlayerNames = ({count}) => {
-    const [active] = useState(1);
+    const [active, setActive] = useState(1);
     const forms = [];
-    for (let i = 1; i <= count; i++) {
-        forms.push(<PlayerForm number={i} active={active === i}/>)
+    const indicators = [];
+
+    const onSubmit = (value) => {
+        console.log(value)
+        if (value.number < count) setActive(value.number + 1)
     }
-    return <Container>
-        {forms}
-    </Container>
+
+    for (let i = 1; i <= count; i++) {
+        indicators.push(<Indicator onClick={() => {
+            console.log(active);
+            setActive(i)
+        }} active={active === i}/>);
+        forms.push(<PlayerForm filled={i < active} number={i} active={active === i}
+                               onSubmit={(value) => onSubmit(value)}/>)
+    }
+    return <>
+        <Container active={active}>
+            {forms}
+        </Container>
+        <Indicators>
+            {indicators}
+        </Indicators>
+    </>
 };
