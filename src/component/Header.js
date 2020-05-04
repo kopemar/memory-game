@@ -1,12 +1,13 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
 import {PATH, SCREEN} from "../constant/Constants";
-import {Link, useRouteMatch} from "react-router-dom";
+import {Link, Route, Switch} from "react-router-dom";
 
 const Container = styled.header`
     text-align: center; 
     margin: 5px;
     max-width: 100vw;
+    position: relative; 
     
     ${SCREEN.BELOW_PHONE} {
         max-width: 500px;
@@ -20,6 +21,7 @@ const Container = styled.header`
 `;
 
 const SmallLogo = styled.h1`
+    display: inline-block; 
     text-indent: -9999px;
     margin: auto;
     width: 401px; 
@@ -36,10 +38,24 @@ const SmallLogo = styled.h1`
     `}
 `
 
+const BackButton = styled.nav`
+    position: absolute; 
+    left: 0;
+    top: 25%; 
+    bottom: 75%;
+    margin-left: 30px;
+    cursor: pointer; 
+`
+
 export const Header = ({collapsed}) => {
-    let match = useRouteMatch();
-    console.log(window.location.search)
     return <Container>
+        <Switch>
+            <Route path={PATH.MULTIPLAYER}>
+                <BackButton onClick={() => window.history.back()}>
+                    <img src="img/back.svg"/>
+                </BackButton>
+            </Route>
+        </Switch>
         <Link to={PATH.HOME}>
             <SmallLogo collapsed={collapsed}>Memory Board Game</SmallLogo>
         </Link>
