@@ -1,8 +1,8 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {Game} from "./Game";
 import {Playground} from "./component/game/Playground";
-import {AppContext, GlobalContext} from "./context/AppContext";
+import {GlobalContext} from "./context/AppContext";
 import {Header} from "./component/Header";
 import {PlayerBar} from "./component/game/PlayerBar";
 import {WelcomeScreen} from "./component/WelcomeScreen";
@@ -11,10 +11,9 @@ import {FadeIn} from "./component/FadeIn";
 import {PlayerNames} from "./component/settings/PlayerNames";
 import {GameType} from "./component/settings/GameType";
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Switch,
-    Route, withRouter
-} from "react-router-dom";
+    Route} from "react-router-dom";
 import {PATH} from "./constant/Constants";
 
 function App() {
@@ -48,12 +47,11 @@ function App() {
         </>
     }
 
-
     return (
         <GlobalContext>
-            <Router basename={process.env.PUBLIC_URL}>
+            <Router>
                 <Switch>
-                    <Route path={PATH.MULTIPLAYER}>
+                    <Route path={`/multiplayer`}>
                         <Multiplayer/>
                     </Route>
                     <Route path={PATH.HOME}>

@@ -37,6 +37,8 @@ const SmallLogo = styled.h1`
 `
 
 export const Header = ({collapsed}) => {
+    let match = useRouteMatch();
+    console.log(window.location.search)
     return <Container>
         <Link to={PATH.HOME}>
             <SmallLogo collapsed={collapsed}>Memory Board Game</SmallLogo>
