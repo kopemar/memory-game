@@ -13,8 +13,7 @@ import {GameType} from "./component/settings/GameType";
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
+    Route, withRouter
 } from "react-router-dom";
 import {PATH} from "./constant/Constants";
 
@@ -22,7 +21,7 @@ function App() {
     const [game, setGame] = useState(null);
     const [welcome, setWelcome] = useState(false);
     const [collapsed, setCollapsed] = useState(false)
-    const [playerCount, setPlayerCount] = useState(0)
+    const [playerCount, setPlayerCount] = useState(0);
 
     const finishWelcomeScreen = () => {
         setCollapsed(true);
@@ -52,7 +51,7 @@ function App() {
 
     return (
         <GlobalContext>
-            <Router>
+            <Router basename={process.env.PUBLIC_URL}>
                 <Switch>
                     <Route path={PATH.MULTIPLAYER}>
                         <Multiplayer/>

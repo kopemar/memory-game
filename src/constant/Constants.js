@@ -60,7 +60,8 @@ export const STRING = {
 
 export const PATH = {
     MULTIPLAYER: "/multiplayer",
-    HOME: "/"
+    HOME: "/",
+    BASENAME: "/memory-game"
 }
 
 export const MAX_PLAYER_COUNT = 4;
