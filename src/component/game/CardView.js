@@ -43,10 +43,16 @@ const Back = styled.rect`
 const Front = styled.rect`
     width: 100%;
     height: 100%;
-    rx: 10;
     fill: ${({src}) => src};
     stroke: ${({active}) => !active ? COLORS.DARK_WASSERMANN : COLORS.WASSERMANN}; 
     position: absolute;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+`
+
+const Img = styled.image`
+    width: 100%;
+    height: 100%;
     backface-visibility: hidden;
     transform: rotateY(180deg);
 `
@@ -96,8 +102,9 @@ export const CardView = ({card, clickHandler, timeoutHandler}) => {
                 </defs>
                 <FlipCard>
                     <Inner active={card.isTheSame(cCard) || active || discovered} size={viewBoxSize}>
-                        <Back active={card.isTheSame(cCard) || active || discovered} fill={getSelector(gradientId)} id="card_bg_rectangle"/>
-                        <Front active={card.isTheSame(cCard) || active || discovered} src={card.src} fill="#img1"/>
+                        <Back active={card.isTheSame(cCard) || active || discovered} fill={getSelector(gradientId)} id="card_bg_rectangle" width="100%" height="100%" rx="10"/>
+                        <Front active={card.isTheSame(cCard) || active || discovered} src={card.props.color} width="100%" height="100%" rx="10"/>
+                        <Img href={card.props.src} width="100%" height="100%"/>
                     </Inner>
                 </FlipCard>
             </svg>

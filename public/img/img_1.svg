@@ -1,0 +1,75 @@
+<svg version="1.1" viewBox="0 0 124 115" xmlns="http://www.w3.org/2000/svg">
+    <title>Group 25</title>
+    <defs>
+        <radialGradient id="c" cy="0%" r="125.31%" gradientTransform="translate(.5) scale(.95701 1) rotate(58.607) translate(-.5)">
+            <stop stop-color="#fff" offset="0"/>
+            <stop stop-color="#8CC4B2" offset="0"/>
+            <stop stop-color="#9AE0CA" offset="1"/>
+        </radialGradient>
+        <linearGradient id="h" x1="113.25%" x2="-38.993%" y1="85.053%" y2="21.966%">
+            <stop stop-color="#6F8AA7" offset="0"/>
+            <stop stop-color="#B0BFCF" offset="1"/>
+        </linearGradient>
+        <linearGradient id="g" x1="110.42%" x2="-12.476%" y1="151.32%">
+            <stop stop-color="#6F8AA7" offset="0"/>
+            <stop stop-color="#B0BFCF" offset="1"/>
+        </linearGradient>
+        <linearGradient id="f" x1="1.8687%" y1="50%" y2="50%">
+            <stop stop-color="#A6EBD5" offset="0"/>
+            <stop stop-color="#8CC4B2" offset=".50124"/>
+            <stop stop-color="#A5F6DC" offset="1"/>
+        </linearGradient>
+        <radialGradient id="b" cy="37.022%" r="54.445%" gradientTransform="translate(.5 .37022) scale(.91504 1) rotate(58.24) translate(-.5 -.37022)">
+            <stop stop-color="#eee" offset="0"/>
+            <stop stop-color="#C5C5C5" offset="1"/>
+        </radialGradient>
+        <radialGradient id="a" cx="68.936%" r="71.381%" gradientTransform="translate(.68936 .5) scale(.72296 1) rotate(90) translate(-.68936 -.5)">
+            <stop stop-color="#DEA0D9" offset="0"/>
+            <stop stop-color="#C063B6" offset="1"/>
+        </radialGradient>
+        <linearGradient id="e" x1="50%" x2="50%" y2="100%">
+            <stop stop-color="#96D2BF" offset="0"/>
+            <stop stop-color="#A3B6AF" offset="1"/>
+        </linearGradient>
+        <linearGradient id="d" x1="53.49%" x2="41.026%" y2="100%">
+            <stop stop-color="#B0CFC3" offset="0"/>
+            <stop stop-color="#A2B3AD" offset="1"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(-4 -9)">
+            <g transform="translate(4 9)">
+                <g transform="translate(0 .36839)">
+                    <ellipse id="Oval" cx="107.65" cy="22.94" rx="15.854" ry="15.151" fill="url(#c)" stroke="#979797"/>
+                    <ellipse cx="16.354" cy="22.94" rx="15.854" ry="15.151" fill="#9DE7CF" stroke="#979797"/>
+                    <ellipse cx="107.65" cy="22.94" rx="12.619" ry="11.913" fill="#B0BFCF" stroke="#979797"/>
+                    <ellipse cx="16.354" cy="22.94" rx="12.619" ry="11.913" fill="#B0BFCF" stroke="#979797"/>
+                    <path d="m21.753 26.792c-4.8459-4.3074-8.0978-6.4611-9.7558-6.4611" stroke="url(#h)"/>
+                    <path d="m24.441 23.561c-4.2931-1.3565-6.4397-4.4075-6.4397-9.1531" stroke="url(#g)"/>
+                    <path id="Oval" d="m60.811 0.59382c-14.184 0-25.835 5.8397-34.882 14.895-10.675 10.686-17.73 25.841-21.059 41.197-2.98 13.748 2.8722 27.318 13.181 37.637 10.93 10.941 26.883 18.243 42.759 18.243 15.702 0 31.087-7.1432 41.818-17.885 10.36-10.37 16.392-24.106 14.117-38.02-2.4725-15.127-9.4252-30.059-20.066-40.71-9.3089-9.3184-21.444-15.357-35.87-15.357z" fill="url(#f)" stroke="#979797"/>
+                    <g transform="translate(31.27 39.31)">
+                        <ellipse id="i" cx="29.293" cy="35.079" rx="28.793" ry="26.304" fill="url(#b)" stroke="#979797"/>
+                        <g transform="translate(8.9855)">
+                            <g transform="translate(36.301)" stroke="#979797">
+                                <ellipse cx="3.5942" cy="3.5978" rx="3.0942" ry="3.0978" fill="#6487C2"/>
+                                <ellipse cx="2.8754" cy="2.8783" rx="1" ry="1" fill="#fff"/>
+                            </g>
+                            <g stroke="#979797">
+                                <ellipse cx="3.5942" cy="3.5978" rx="3.0942" ry="3.0978" fill="#6487C2"/>
+                                <ellipse cx="2.5159" cy="2.8783" rx="1" ry="1" fill="#fff"/>
+                            </g>
+                            <g transform="translate(14.017 23.026)">
+                                <line x1="6.4696" x2="6.4696" y1="8.6348" y2="24.644" stroke="#D780D0" stroke-width="2"/>
+                                <ellipse cx="6.4696" cy="4.6772" rx="5.9696" ry="4.1772" fill="url(#a)" stroke="#979797"/>
+                            </g>
+                            <path d="m20.487 48.033c2.6233 3.8924 5.2339 5.8387 7.8317 5.8387 3.3628 0 4.9866-1.2914 6.1188-6.0202" stroke="#D780D0" stroke-width="2"/>
+                            <path transform="translate(13.445 50.862) scale(-1 1) translate(-13.445 -50.862)" d="m6.4696 48.033c2.6233 3.8924 5.2339 5.8387 7.8317 5.8387 3.3628 0 4.9866-1.2914 6.1188-6.0202" stroke="#D780D0" stroke-width="2"/>
+                        </g>
+                    </g>
+                </g>
+                <path d="m34.656 108c1.2633-13.142-0.95548-21.142-6.6563-24" stroke="url(#e)"/>
+                <path d="m84 107c1.9757-12.984 5.3091-21.65 10-26" stroke="url(#d)"/>
+            </g>
+        </g>
+    </g>
+</svg>

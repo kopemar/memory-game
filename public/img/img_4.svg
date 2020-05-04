@@ -1,0 +1,36 @@
+<svg version="1.1" viewBox="0 0 123 110" xmlns="http://www.w3.org/2000/svg">
+    <title>Group 9</title>
+    <defs>
+        <radialGradient id="a" r="130.49%" gradientTransform="translate(.5 .5) scale(1 .96774) rotate(135.67) translate(-.5 -.5)">
+            <stop stop-color="#82654C" offset="0"/>
+            <stop offset="1"/>
+        </radialGradient>
+        <radialGradient id="d" cy="0%" r="100%" gradientTransform="translate(.5) scale(.90164 1) rotate(90) translate(-.5)">
+            <stop stop-color="#866A52" offset="0"/>
+            <stop stop-color="#724F31" offset="1"/>
+        </radialGradient>
+        <radialGradient id="c" cy="32.182%" r="100%" gradientTransform="translate(.5 .32182) scale(.70667 1) rotate(90) translate(-.5 -.32182)">
+            <stop stop-color="#C7B990" offset="0"/>
+            <stop stop-color="#956E46" offset="1"/>
+        </radialGradient>
+        <radialGradient id="b" r="68.447%" gradientTransform="translate(.5 .5) scale(.84615 1) rotate(90) translate(-.5 -.5)">
+            <stop stop-color="#977659" offset="0"/>
+            <stop stop-color="#492A0F" offset="1"/>
+        </radialGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(-5 -11)">
+            <g transform="translate(5 11)">
+                <ellipse id="Oval" cx="108" cy="23.5" rx="14.5" ry="15" fill="url(#a)" stroke="#8F8984"/>
+                <ellipse cx="15" cy="23.5" rx="14.5" ry="15" fill="url(#a)" stroke="#8F8984"/>
+                <path id="Oval" d="m62.094 0.5c-15.633 0-28.44 5.4714-38.266 14.434-10.944 9.9829-18.19 24.287-21.542 40.169-3.0281 14.348 2.9583 27.387 13.6 37.093 11.677 10.651 28.958 17.303 46.209 17.303 17.154 0 34.09-6.5784 45.653-17.126 10.666-9.729 16.76-22.845 14.153-37.286-2.8437-15.752-10.023-29.951-20.951-39.919-9.979-9.1023-23.084-14.67-38.855-14.67z" fill="url(#d)" stroke="#8F8984"/>
+                <ellipse cx="62.5" cy="81.5" rx="37" ry="26" fill="url(#c)" stroke="#8F8984"/>
+                <circle id="e" cx="81" cy="52" r="3" fill="#000"/>
+                <circle cx="42" cy="52" r="3" fill="#000"/>
+                <line x1="61.152" x2="61.152" y1="78" y2="97.306" stroke="#7A5A3F"/>
+                <path d="m61.5 67.5c-1.6675 0-3.1796 0.56724-4.2732 1.4926-1.0608 0.89762-1.7268 2.1348-1.7268 3.5074 0 1.0388 0.7578 1.9776 1.6825 2.76 1.5675 1.3263 3.7166 2.24 4.3175 2.24s2.75-0.91367 4.3175-2.24c0.92471-0.78245 1.6825-1.7212 1.6825-2.76 0-1.3726-0.66595-2.6098-1.7268-3.5074-1.0936-0.92536-2.6057-1.4926-4.2732-1.4926z" fill="url(#b)" stroke="#8F8984"/>
+                <path d="m79.276 95.88c-0.85097 4.397-3.8643 6.5955-9.04 6.5955-5.1757 0-8.2038-1.7234-9.0843-5.1701-0.72965 3.4468-3.2941 5.1701-7.6934 5.1701-4.3993 0-7.2189-2.1985-8.4588-6.5955" stroke="#78573B"/>
+            </g>
+        </g>
+    </g>
+</svg>

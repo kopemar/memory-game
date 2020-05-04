@@ -1,5 +1,16 @@
 import {css} from 'styled-components'
 
+export const IMAGES = {
+    IMG_1: "img/img_1.svg",
+    IMG_2: "img/img_2.svg",
+    IMG_3: "img/img_3.svg",
+    IMG_4: "img/img_4.svg",
+    IMG_5: "img/img_5.svg",
+    IMG_6: "img/img_6.svg",
+    IMG_7: "img/img_7.svg",
+    IMG_8: "img/img_8.svg",
+}
+
 export const COLORS = {
     WASSERMANN: "#6AA331",
     LIGHT_WASSERMANN: "#ACD87E",
@@ -23,7 +34,12 @@ export const COLORS = {
     ORANGE: "#FF6200",
     WHITE: "#FFFFFF",
     WHITE_TRANSPARENT: "rgb(255, 255, 255, 50)",
-    GRAY: "#BCBDBC"
+    GRAY: "#BCBDBC",
+    LIGHT_BLUE: "#7AD9EF",
+    LIGHT_GRAY: "#D7D7D7",
+    LIGHT_YELLOW: "#E7DEB1",
+    LIGHT_ORANGE: "#E7C3B1",
+    LIGHT_BROWN: "#877467"
 }
 
 export const FONT_SIZE = {

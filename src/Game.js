@@ -1,4 +1,4 @@
-import {COLORS} from "./constant/Constants";
+import {COLORS, IMAGES} from "./constant/Constants";
 
 export class Game {
 
@@ -43,7 +43,7 @@ export class Card {
     constructor(number) {
         console.log("card constructor")
         this.number = number;
-        this.src = Card.image[number];
+        this.props = Card.image[number];
         this.active = false;
         this.id = Card.getId();
         this.discovered = false;
@@ -73,14 +73,14 @@ export class Card {
     }
 
     static image = {
-        0: `${COLORS.ORANGE}`,
-        1: `${COLORS.BARBIE}`,
-        2: `${COLORS.COMMIE}`,
-        3: `${COLORS.DEEP_PURPLE}`,
-        4: `${COLORS.JUST_GOLD}`,
-        5: `${COLORS.TURQUOISE}`,
-        6: `${COLORS.MARINE}`,
-        7: `${COLORS.POISON}`,
+        0: {color: COLORS.SILLY_GREEN, src: IMAGES.IMG_1},
+        1: {color: COLORS.LIGHT_ORANGE, src: IMAGES.IMG_2},
+        2: {color: COLORS.LIGHT_GRAY, src: IMAGES.IMG_3},
+        3: {color: COLORS.LIGHT_BROWN, src: IMAGES.IMG_4},
+        4: {color: COLORS.LIGHT_YELLOW, src: IMAGES.IMG_5},
+        5: {color: COLORS.LIGHT_BLUE, src: IMAGES.IMG_6},
+        6: {color: COLORS.LIGHT_GRAY, src: IMAGES.IMG_7},
+        7: {color: COLORS.LIGHT_YELLOW, src: IMAGES.IMG_8},
     }
 }
 
