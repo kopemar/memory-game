@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5642a56241bf24cd02fc77f9cc23ed63",
+    "revision": "74cc9c41aee8e9277a465bec47bbe8fc",
     "url": "/memory-game/index.html"
   },
   {
-    "revision": "c305467cd5d84985f509",
+    "revision": "2acbd5d03cc9cb86bda6",
     "url": "/memory-game/static/css/main.5418e9b6.chunk.css"
   },
   {
-    "revision": "63feccbbf5d64ed3e6d3",
-    "url": "/memory-game/static/js/2.7fae562e.chunk.js"
+    "revision": "a309a7fb36509968d5d2",
+    "url": "/memory-game/static/js/2.c6fa1a5c.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/memory-game/static/js/2.7fae562e.chunk.js.LICENSE.txt"
+    "url": "/memory-game/static/js/2.c6fa1a5c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c305467cd5d84985f509",
-    "url": "/memory-game/static/js/main.b458d814.chunk.js"
+    "revision": "2acbd5d03cc9cb86bda6",
+    "url": "/memory-game/static/js/main.9e967742.chunk.js"
   },
   {
     "revision": "a7295d09a3c7d39f3388",
