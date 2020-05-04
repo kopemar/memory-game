@@ -14,6 +14,9 @@ const Container = styled.div`
         flex-direction: column; 
         padding: 20px;
     }
+    > * {
+        text-align: center; 
+    }
 `;
 
 const PlayerField = styled.div`
@@ -35,6 +38,7 @@ const PlayerName = styled.div`
     color: ${({active}) => active? COLORS.SILLY_GREEN : COLORS.GRAY};
     
     ${SCREEN.BELOW_PHONE} {
+        text-align: left;
         padding: 5px;
         font-size: ${FONT_SIZE.LARGE};
     }
@@ -51,11 +55,10 @@ const Indicator = styled.div`
 `
 
 export const PlayerBar = ({players}) => {
-    console.log(players);
     const [activePlayer, setActivePlayer] = useState(players[1])
     const fields = [];
 
-    for (let i = 1; i <= players.length; i++) {
+    for (let i = 1; i < players.length; i++) {
         const player = players[i];
         player && fields.push(<PlayerField><PlayerName active={player === activePlayer}>{player.name}</PlayerName></PlayerField>)
     }

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import {SCREEN} from "../constant/Constants";
+import {PATH, SCREEN} from "../constant/Constants";
+import {Link} from "react-router-dom";
 
 const Container = styled.header`
     text-align: center; 
@@ -36,13 +37,9 @@ const SmallLogo = styled.h1`
 `
 
 export const Header = ({collapsed}) => {
-    const reset = () => {
-        window.location.reload()
-    }
     return <Container>
-        <SmallLogo collapsed={collapsed} onClick={() => {reset()}}>
-            Memory Board Game
-        </SmallLogo>
-
+        <Link to={PATH.HOME}>
+            <SmallLogo collapsed={collapsed}>Memory Board Game</SmallLogo>
+        </Link>
     </Container>
 }

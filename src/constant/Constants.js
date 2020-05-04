@@ -58,6 +58,11 @@ export const STRING = {
     NAME_OF_PLAYER: "Insert name of Player"
 }
 
+export const PATH = {
+    MULTIPLAYER: "/multiplayer",
+    HOME: "/"
+}
+
 export const MAX_PLAYER_COUNT = 4;
 export const MIN_PLAYER_COUNT = 2;
 
