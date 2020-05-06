@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import styled from 'styled-components';
 import {CardView} from "./CardView";
-import {AppContext} from "../../context/AppContext";
 import {COLORS} from "../../constant/Constants";
 
 const PlaygroundContainer = styled.main`
@@ -19,10 +18,10 @@ const PlaygroundContainer = styled.main`
 export const Playground = ({game}) => {
     const cards = [];
 
-    const {setActiveCard} = useContext(AppContext);
-
     game.cards.forEach((card) => {
-        cards.push(<CardView clickHandler={(card) => handleCardClick(card)} card={card}
+        cards.push(<CardView clickHandler={(card) => handleCardClick(card)}
+                             card={card}
+                             game={game}
                              timeoutHandler={(card) => handleTimeout(card)}/>)
     })
 
@@ -30,7 +29,6 @@ export const Playground = ({game}) => {
         if (!card.discovered) {
             card.active = false;
         }
-        setActiveCard(null);
         game.activeCard = null;
 
     }
@@ -40,7 +38,6 @@ export const Playground = ({game}) => {
         console.log(game);
         if (game.activeCard === null) {
             game.activeCard = card;
-            setActiveCard(card);
         } else {
             if (game.activeCard.pairsWith(card)) {
                 if (!card.discovered && game.activeCard.discovered) game.discovered += 2;
@@ -51,7 +48,6 @@ export const Playground = ({game}) => {
                 card.active = false;
             }
             game.activeCard = null;
-            setActiveCard(null)
         }
     }
 

@@ -125,7 +125,7 @@ class PlayerForm extends Component {
 
     handleInputChange(event) {
         if (event.target.name === "name" && this.state.name != null && event.target.value.length >= 10) {
-            this.state.isLong = true;
+            this.setState({isLong: true})
         } else {
             this.setState({
                 [event.target.name]: event.target.value

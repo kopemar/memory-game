@@ -60,8 +60,13 @@ export const STRING = {
 
 export const PATH = {
     MULTIPLAYER: "/multiplayer",
+    ABOUT: "/about",
     HOME: "/",
     BASENAME: "/memory-game"
+}
+
+export const API = {
+    GITHUB_PATH: "https://api.github.com/users/kopemar"
 }
 
 export const MAX_PLAYER_COUNT = 4;

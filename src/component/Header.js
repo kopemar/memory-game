@@ -48,16 +48,16 @@ const BackButton = styled.nav`
 `
 
 export const Header = ({collapsed, onBack}) => {
+    const back = <BackButton onClick={() => {onBack()}}>
+        <img src="img/back.svg"/>
+    </BackButton>
     return <Container>
         <Switch>
-            <Route path={PATH.MULTIPLAYER}>
-                <BackButton
-                    onClick={() => {
-                        onBack()
-                    }}
-                >
-                    <img src="img/back.svg"/>
-                </BackButton>
+            <Route path={(PATH.MULTIPLAYER)}>
+                {back}
+            </Route>
+            <Route path={PATH.ABOUT}>
+                {back}
             </Route>
         </Switch>
         <Link to={PATH.HOME}>

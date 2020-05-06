@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './App.css';
 import {Game} from "./Game";
 import {Playground} from "./component/game/Playground";
-import {GlobalContext} from "./context/AppContext";
 import {Header} from "./component/Header";
 import {PlayerBar} from "./component/game/PlayerBar";
 import {WelcomeScreen} from "./component/WelcomeScreen";
@@ -13,6 +12,7 @@ import {GameType} from "./component/settings/GameType";
 import {HashRouter as Router, Route, Switch} from "react-router-dom";
 import {PATH} from "./constant/Constants";
 import {MultiplayerLoad} from "./component/settings/MultiplayerLoad";
+import About from "./component/About";
 
 class App extends Component {
     constructor(props) {
@@ -28,18 +28,17 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.state)
         const finishWelcomeScreen = () => {
             this.setState({collapsed: true});
             setTimeout(() => {
                 this.setState({welcome: true});
                 console.log(this.state)
             }, 1000)
-        }
+        };
 
         const initGame = (players) => {
             this.setState({game: new Game(16, players)})
-        }
+        };
 
         const Multiplayer = ({}) => {
             return <>
@@ -68,15 +67,17 @@ class App extends Component {
                     <PlayerBar players={this.state.game.players}/>
                     <Playground game={this.state.game}/>
                 </>}
-                }
             </>
         }
 
         return (<>
-                <Router>
+                <Router basename="/">
                     <Switch>
-                        <Route path={`/multiplayer`}>
+                        <Route path={PATH.MULTIPLAYER}>
                             <Multiplayer/>
+                        </Route>
+                        <Route path={PATH.ABOUT}>
+                            <About/>
                         </Route>
                         <Route path={PATH.HOME}>
                             <FadeIn>

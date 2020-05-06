@@ -57,10 +57,9 @@ const Img = styled.image`
     transform: rotateY(180deg);
 `
 
-export const CardView = ({card, clickHandler, timeoutHandler}) => {
+export const CardView = ({card, clickHandler, timeoutHandler, game}) => {
     const [active, setActive] = useState(card.active);
     const [discovered, setDiscovered] = useState(false)
-    const {activeCard} = useContext(AppContext);
 
     const getSelector = (id) => {
         return `#${id}`
@@ -69,18 +68,14 @@ export const CardView = ({card, clickHandler, timeoutHandler}) => {
     const viewBoxSize = 160;
     const gradientId = "green_linear_gradient";
 
-    useEffect(() => {
-        card.active = active
-    }, [active, card.active])
-
     const handleClick = () => {
         clickHandler(card)
         setActive(true);
         console.log("Handle Click", card)
 
-        if (card.pairsWith(activeCard)) {
+        if (card.pairsWith(game.activeCard)) {
             console.log("clearing timeout")
-            clearTimeout(activeCard.timeout);
+            clearTimeout(game.activeCard.timeout);
         }
 
         card.timeout = setTimeout(() => {
@@ -104,9 +99,9 @@ export const CardView = ({card, clickHandler, timeoutHandler}) => {
                     </pattern>
                 </defs>
                 <FlipCard>
-                    <Inner active={card.isTheSame(activeCard) || active || discovered} size={viewBoxSize}>
-                        <Back active={card.isTheSame(activeCard) || active || discovered} fill={getSelector(gradientId)} id="card_bg_rectangle" width="100%" height="100%" rx="10"/>
-                        <Front active={card.isTheSame(activeCard) || active || discovered} src={card.props.color} width="100%" height="100%" rx="10"/>
+                    <Inner active={card.isTheSame(game.activeCard) || active || discovered} size={viewBoxSize}>
+                        <Back active={card.isTheSame(game.activeCard) || active || discovered} fill={getSelector(gradientId)} id="card_bg_rectangle" width="100%" height="100%" rx="10"/>
+                        <Front active={card.isTheSame(game.activeCard) || active || discovered} src={card.props.color} width="100%" height="100%" rx="10"/>
                         <Img href={card.props.src} width="100%" height="100%"/>
                     </Inner>
                 </FlipCard>
