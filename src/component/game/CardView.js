@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styled, {css} from 'styled-components';
 import {COLORS} from "../../constant/Constants";
 import {AppContext} from "../../context/AppContext";
@@ -60,7 +60,7 @@ const Img = styled.image`
 export const CardView = ({card, clickHandler, timeoutHandler}) => {
     const [active, setActive] = useState(card.active);
     const [discovered, setDiscovered] = useState(false)
-    const {cCard} = useContext(AppContext);
+    const {activeCard} = useContext(AppContext);
 
     const getSelector = (id) => {
         return `#${id}`
@@ -69,13 +69,18 @@ export const CardView = ({card, clickHandler, timeoutHandler}) => {
     const viewBoxSize = 160;
     const gradientId = "green_linear_gradient";
 
+    useEffect(() => {
+        card.active = active
+    }, [active, card.active])
+
     const handleClick = () => {
         clickHandler(card)
         setActive(true);
+        console.log("Handle Click", card)
 
-        if (card.pairsWith(cCard)) {
+        if (card.pairsWith(activeCard)) {
             console.log("clearing timeout")
-            clearTimeout(cCard.timeout);
+            clearTimeout(activeCard.timeout);
         }
 
         card.timeout = setTimeout(() => {
@@ -83,8 +88,6 @@ export const CardView = ({card, clickHandler, timeoutHandler}) => {
             setActive(card.discovered)
             timeoutHandler(card)
         }, 1500);
-
-        console.log(card)
     }
 
     return (
@@ -101,9 +104,9 @@ export const CardView = ({card, clickHandler, timeoutHandler}) => {
                     </pattern>
                 </defs>
                 <FlipCard>
-                    <Inner active={card.isTheSame(cCard) || active || discovered} size={viewBoxSize}>
-                        <Back active={card.isTheSame(cCard) || active || discovered} fill={getSelector(gradientId)} id="card_bg_rectangle" width="100%" height="100%" rx="10"/>
-                        <Front active={card.isTheSame(cCard) || active || discovered} src={card.props.color} width="100%" height="100%" rx="10"/>
+                    <Inner active={card.isTheSame(activeCard) || active || discovered} size={viewBoxSize}>
+                        <Back active={card.isTheSame(activeCard) || active || discovered} fill={getSelector(gradientId)} id="card_bg_rectangle" width="100%" height="100%" rx="10"/>
+                        <Front active={card.isTheSame(activeCard) || active || discovered} src={card.props.color} width="100%" height="100%" rx="10"/>
                         <Img href={card.props.src} width="100%" height="100%"/>
                     </Inner>
                 </FlipCard>

@@ -59,6 +59,7 @@ export class Card {
     }
 
     valueEquals (card) {
+        if (card === undefined) return this === undefined;
         if (card === null) return this === null;
         if (card.hasOwnProperty("number")) {
             return card.number === this.number

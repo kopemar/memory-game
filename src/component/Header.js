@@ -47,11 +47,15 @@ const BackButton = styled.nav`
     cursor: pointer; 
 `
 
-export const Header = ({collapsed}) => {
+export const Header = ({collapsed, onBack}) => {
     return <Container>
         <Switch>
             <Route path={PATH.MULTIPLAYER}>
-                <BackButton onClick={() => window.history.back()}>
+                <BackButton
+                    onClick={() => {
+                        onBack()
+                    }}
+                >
                     <img src="img/back.svg"/>
                 </BackButton>
             </Route>
