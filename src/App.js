@@ -13,6 +13,13 @@ import {HashRouter as Router, Route, Switch} from "react-router-dom";
 import {PATH} from "./constant/Constants";
 import {MultiplayerLoad} from "./component/settings/MultiplayerLoad";
 import About from "./component/About";
+import Footer from "./component/Footer";
+import styled from 'styled-components'
+
+const Container = styled.div`
+    min-height: 100vh; 
+    position: relative; 
+`;
 
 class App extends Component {
     constructor(props) {
@@ -70,7 +77,7 @@ class App extends Component {
             </>
         }
 
-        return (<>
+        return (<Container>
                 <Router basename="/">
                     <Switch>
                         <Route path={PATH.MULTIPLAYER}>
@@ -96,8 +103,9 @@ class App extends Component {
                             }
                         </Route>
                     </Switch>
+                    <Footer/>
                 </Router>
-            </>
+            </Container>
         );
     }
 }

@@ -47,9 +47,18 @@ const BackButton = styled.nav`
     cursor: pointer; 
 `
 
+const AboutButton = styled.nav`
+    position: absolute; 
+    right: 0;
+    top: 25%; 
+    bottom: 75%;
+    margin-right: 30px;
+    cursor: pointer; 
+`
+
 export const Header = ({collapsed, onBack}) => {
     const back = <BackButton onClick={() => {onBack()}}>
-        <img src="img/back.svg"/>
+        <img src="img/back.svg" alt="Go back"/>
     </BackButton>
     return <Container>
         <Switch>
@@ -63,5 +72,11 @@ export const Header = ({collapsed, onBack}) => {
         <Link to={PATH.HOME}>
             <SmallLogo collapsed={collapsed}>Memory Board Game</SmallLogo>
         </Link>
+        <AboutButton>
+            <Link to={PATH.ABOUT}>
+                <img src="img/info.svg"/>
+            </Link>
+        </AboutButton>
+
     </Container>
 }
