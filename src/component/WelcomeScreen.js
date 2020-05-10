@@ -5,7 +5,7 @@ import {CustomButton} from "./Button";
 import {FadeIn} from "./FadeIn";
 import {Subheading} from "./Heading";
 
-const Container = styled.main`
+const Container = styled.section`
     max-width: 100%;
     text-align: center;
     transition: 1s;

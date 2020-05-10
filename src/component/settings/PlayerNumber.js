@@ -2,7 +2,7 @@ import React from 'react';
 import styled, {css} from 'styled-components'
 import {COLORS, FONT_SIZE} from "../../constant/Constants";
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
     margin: 10px;
     width: 136px;
     height: 168px;

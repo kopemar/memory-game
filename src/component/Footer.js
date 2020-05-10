@@ -6,7 +6,6 @@ const Container = styled.footer`
     height: 3em;
     display: block;
     text-align: center;
-    position: absolute; 
     bottom: 0;
 `
 

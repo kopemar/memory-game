@@ -2,24 +2,16 @@ import React, {Component} from 'react';
 import './App.css';
 import {Game} from "./Game";
 import {Playground} from "./component/game/Playground";
-import {Header} from "./component/Header";
 import {PlayerBar} from "./component/game/PlayerBar";
 import {WelcomeScreen} from "./component/WelcomeScreen";
 import {PlayerCount} from "./component/settings/PlayerCount";
-import {FadeIn} from "./component/FadeIn";
 import {PlayerNames} from "./component/settings/PlayerNames";
 import {GameType} from "./component/settings/GameType";
-import {HashRouter as Router, Route, Switch} from "react-router-dom";
-import {PATH} from "./constant/Constants";
+import {Route, Switch} from "react-router-dom";
+import {HASH, PATH} from "./constant/Constants";
 import {MultiplayerLoad} from "./component/settings/MultiplayerLoad";
 import About from "./component/About";
-import Footer from "./component/Footer";
-import styled from 'styled-components'
-
-const Container = styled.div`
-    min-height: 100vh; 
-    position: relative; 
-`;
+import Layout from "./component/Layout";
 
 class App extends Component {
     constructor(props) {
@@ -32,6 +24,8 @@ class App extends Component {
             loaded: false,
             activeCard: null
         };
+
+        console.log(window)
     }
 
     render() {
@@ -49,11 +43,6 @@ class App extends Component {
 
         const Multiplayer = ({}) => {
             return <>
-                <Header context={this.state} collapsed={true} onBack={() => {
-                    console.log("back")
-                    window.history.back();
-                    this.setState({loaded: false})}
-                }/>
                 {!this.state.loaded &&
                 <MultiplayerLoad game={this.state.game}
                                  onSelected={(game) => {
@@ -77,8 +66,7 @@ class App extends Component {
             </>
         }
 
-        return (<Container>
-                <Router basename="/">
+        return (<Layout collapsed={this.state.welcome || window.location.hash !== HASH.HOME} shouldFadeIn={!this.state.welcome}>
                     <Switch>
                         <Route path={PATH.MULTIPLAYER}>
                             <Multiplayer/>
@@ -87,12 +75,6 @@ class App extends Component {
                             <About/>
                         </Route>
                         <Route path={PATH.HOME}>
-                            <FadeIn>
-                                <Header collapsed={this.state.collapsed} onBack={() => {
-                                    window.history.back();
-                                    this.setState({loaded: false})
-                                }}/>
-                            </FadeIn>
                             {!this.state.welcome && <>
                                 <WelcomeScreen onFinished={() => {
                                     finishWelcomeScreen()
@@ -103,9 +85,8 @@ class App extends Component {
                             }
                         </Route>
                     </Switch>
-                    <Footer/>
-                </Router>
-            </Container>
+
+            </Layout>
         );
     }
 }

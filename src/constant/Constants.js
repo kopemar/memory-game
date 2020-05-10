@@ -65,6 +65,10 @@ export const PATH = {
     BASENAME: "/memory-game"
 }
 
+export const HASH = {
+    HOME: `#/`
+}
+
 export const API = {
     GITHUB_PATH: "https://api.github.com/users/kopemar"
 }

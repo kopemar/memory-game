@@ -7,7 +7,7 @@ import {MoveFromRight} from "../FadeIn";
 import {Player} from "../../Game";
 
 const Container = styled.div`
-    
+    position: relative; 
 `
 
 const FormContainer = styled.main`
@@ -98,7 +98,6 @@ const IndicatorWrapper = styled.div`
 
 const IndicatorsWrapper = styled(MoveFromRight)`
     width: 100vw;
-    position: absolute; 
     bottom: 0;
 `
 

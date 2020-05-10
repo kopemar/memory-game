@@ -19,13 +19,15 @@ const Container = styled(MoveFromRight)`
 `
 
 export const GameType = () => {
-    return <Container>
-        <Subheading>Choose type of the game</Subheading>
-        <CustomButton disabled>Single Player</CustomButton>
-        <Link to={PATH.MULTIPLAYER}>
-            <CustomButton>
-                Multiplayer
-            </CustomButton>
-        </Link>
-    </Container>
+    return <section>
+        <Container>
+            <Subheading>Choose type of the game</Subheading>
+            <CustomButton disabled>Single Player</CustomButton>
+            <Link to={PATH.MULTIPLAYER}>
+                <CustomButton>
+                    Multiplayer
+                </CustomButton>
+            </Link>
+        </Container>
+    </section>
 }

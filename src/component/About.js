@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import {Header} from "./Header";
 import {Subheading} from "./Heading";
 
-const Container = styled.div`
+const Container = styled.section`
     text-align:center; 
 `
 
@@ -45,26 +45,19 @@ export class About extends Component {
 
     componentDidMount(): void {
         axios.get(API.GITHUB_PATH).then((response) => {
-            console.log(response.data)
             this.setState({user: response.data})
         }).catch((err) => console.error(err))
     }
 
     render() {
-
         return <Container>
-            <Header collapsed onBack={() => {window.history.back();}}/>
-            <main>
-                <section>
-                    {this.state.user && <Subheading>About</Subheading>}
-                    {this.state.user && <PersonalInfo>
-                        <img src={this.state.user.avatar_url}/>
-                        <div>{this.state.user.name}</div>
-                        <div><a href={this.state.user.html_url}>@{this.state.user.login}</a></div>
+            {this.state.user && <Subheading>The author</Subheading>}
+            {this.state.user && <PersonalInfo>
+                <img src={this.state.user.avatar_url}/>
+                <div>{this.state.user.name}</div>
+                <div><a href={this.state.user.html_url}>@{this.state.user.login}</a></div>
 
-                    </PersonalInfo>}
-                </section>
-            </main>
+            </PersonalInfo>}
         </Container>
     }
 }

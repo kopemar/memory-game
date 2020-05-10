@@ -10,7 +10,6 @@ const Container = styled(MoveFromRight)`
     
     > button {
         margin: auto 30px;
-       
         ${SCREEN.BELOW_PHONE} {
             margin-bottom: 30px;
         }
@@ -18,9 +17,10 @@ const Container = styled(MoveFromRight)`
 `
 
 export const MultiplayerLoad = ({game, onSelected}) => {
-    return <Container>
+    return <section><Container>
         <Subheading>Choose type of the game</Subheading>
         <CustomButton disabled={game === null} onClick={(game) => onSelected(game)}>Load Game</CustomButton>
         <CustomButton onClick={() => onSelected(null)}>New Game</CustomButton>
     </Container>
+    </section>
 }

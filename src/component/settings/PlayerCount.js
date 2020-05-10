@@ -35,11 +35,12 @@ export const PlayerCount = ({onFinished}) => {
     }
 
     setTimeout(() => setShouldMove(true), 100)
-    return <Container shouldMove={shouldMove}>
+    return <section><Container shouldMove={shouldMove}>
         <Subheading>{STRING.NUMBER_OF_PLAYERS}</Subheading>
         <Numbers>
             {numbers}
         </Numbers>
         <CustomButton disabled={playerCount === 0} onClick={()=> {onFinished(playerCount)}}>Next</CustomButton>
     </Container>
+    </section>
 }

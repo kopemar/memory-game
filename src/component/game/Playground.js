@@ -1,9 +1,9 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {CardView} from "./CardView";
 import {COLORS} from "../../constant/Constants";
 
-const PlaygroundContainer = styled.main`
+const PlaygroundContainer = styled.section`
     display: flex;
     flex-wrap: wrap;
     max-width: 700px;
@@ -29,8 +29,8 @@ export const Playground = ({game}) => {
         if (!card.discovered) {
             card.active = false;
         }
-        game.activeCard = null;
 
+        game.activeCard = null;
     }
 
     function handleCardClick(card) {
