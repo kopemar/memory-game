@@ -1,4 +1,18 @@
+# Memory Game 
+
+## App details
+
+Deployed at [Github Pages](https://kopemar.github.io/memory-game/)
+
+### Technologies
+
+JS + React 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+### Description
+A simple Memory Game (called _pexeso_ in Czech). 
 
 ## Available Scripts
 
@@ -66,3 +80,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
