@@ -73,6 +73,11 @@ export const API = {
     GITHUB_PATH: "https://api.github.com/users/kopemar"
 }
 
+export const STORAGE = {
+    MULTIPLAYER: "multiplayer_in_storage",
+    WELCOME: "has_been_welcome",
+}
+
 export const MAX_PLAYER_COUNT = 4;
 export const MIN_PLAYER_COUNT = 2;
 

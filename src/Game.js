@@ -1,11 +1,26 @@
 import {COLORS, IMAGES} from "./constant/Constants";
 
-export class Game {
+class Game {
+    static fromProps(props) {
+        try {
+            const game = new Game(props.cards.length);
+            game.cards = [];
 
-    constructor(count, players) {
+            for (const card of props.cards) {
+                card && game.cards.push(Card.fromProps(card));
+            }
+
+            game.activeCard = props.activeCard;
+            game.discovered = props.discovered;
+            return game;
+        } catch {
+            throw "Not a valid JSON game"
+        }
+    }
+
+    constructor(count) {
         console.log("Game constructor")
         this.count = count;
-        this.players = players;
         if (count % 2 === 0) {
             this.cards = [];
             for (let i = 0; i < count/2; i++) {
@@ -39,9 +54,39 @@ export class Game {
     }
 }
 
+export class MultiplayerGame extends Game {
+
+    static fromProps(props) {
+        const game = Game.fromProps(props);
+        game.players = [];
+        for (const player of props.players) {
+            game.players.push(player === null ? null : Player.fromProps(player))
+        }
+        console.log("fromProps", game);
+        return game;
+    }
+
+    constructor(count, players) {
+        super(count);
+        this.players = players
+    }
+
+}
+
 export class Card {
+    static fromProps(props) {
+        try {
+            const card = new Card(props.number);
+            card.active = props.active;
+            card.id = props.id;
+            card.discovered = props.discovered;
+            return card;
+        } catch {
+            throw 'Invalid card'
+        }
+    }
+
     constructor(number) {
-        console.log("card constructor")
         this.number = number;
         this.props = Card.image[number];
         this.active = false;
@@ -86,6 +131,16 @@ export class Card {
 }
 
 export class Player {
+    static fromProps (props) {
+        try {
+            const player = new Player(props.name);
+            player.score = props.score;
+            return player;
+        } catch {
+            throw 'Invalid player'
+        }
+    }
+
     constructor(name) {
         this.name = name;
         this.score = 0;

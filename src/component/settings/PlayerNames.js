@@ -10,7 +10,7 @@ const Container = styled.div`
     position: relative; 
 `
 
-const FormContainer = styled.main`
+const FormContainer = styled.div`
     width: 100vw;
     
     ${({active}) => active && css`

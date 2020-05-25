@@ -4,6 +4,7 @@ import {API, COLORS, FONT_SIZE} from "../constant/Constants";
 import styled from 'styled-components'
 import {Header} from "./Header";
 import {Subheading} from "./Heading";
+import {CustomButton} from "./Button";
 
 const Container = styled.section`
     text-align:center; 
@@ -30,9 +31,13 @@ const PersonalInfo = styled.div`
    }
 `
 
+const ButtonWrapper = styled.div`
+    margin: 24px; 
+`
+
 export class About extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             loaded: false,
             user: null
@@ -50,6 +55,11 @@ export class About extends Component {
     }
 
     render() {
+
+        const clearStorage = () => {
+            if (window.confirm("You are about to delete the storage!")) window.localStorage.clear();
+        }
+
         return <Container>
             {this.state.user && <Subheading>The author</Subheading>}
             {this.state.user && <PersonalInfo>
@@ -58,6 +68,9 @@ export class About extends Component {
                 <div><a href={this.state.user.html_url}>@{this.state.user.login}</a></div>
 
             </PersonalInfo>}
+            <ButtonWrapper>
+                <CustomButton onClick={clearStorage}>Clear storage</CustomButton>
+            </ButtonWrapper>
         </Container>
     }
 }

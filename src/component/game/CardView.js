@@ -58,6 +58,7 @@ const Img = styled.image`
 `
 
 export const CardView = ({card, clickHandler, timeoutHandler, game}) => {
+    console.log(card)
     const [active, setActive] = useState(card.active);
     const [discovered, setDiscovered] = useState(false)
 
