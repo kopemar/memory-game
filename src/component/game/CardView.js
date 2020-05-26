@@ -66,7 +66,14 @@ export const CardView = ({card, clickHandler, timeoutHandler, game}) => {
         return `#${id}`
     }
 
-    if (card.remainining > 0) console.log("Some time remaining")
+    if (card.remainining > 0) {
+        card.timeout = setTimeout(() => {
+            timeoutHandler(card)
+            if (!discovered) setDiscovered(card.discovered)
+            setActive(card.discovered);
+            console.log("=== TIMEOUT ===")
+        }, card.remainining);
+    }
 
     const viewBoxSize = 160;
     const gradientId = "green_linear_gradient";

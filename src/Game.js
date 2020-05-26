@@ -80,6 +80,7 @@ export class Card {
             card.active = props.active;
             card.id = props.id;
             card.discovered = props.discovered;
+            card.remainining = props.remainining;
             return card;
         } catch {
             throw 'Invalid card'
