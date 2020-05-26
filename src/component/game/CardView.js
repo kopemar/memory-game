@@ -58,13 +58,15 @@ const Img = styled.image`
 `
 
 export const CardView = ({card, clickHandler, timeoutHandler, game}) => {
-    console.log(card)
+    console.log("New CardView", card);
     const [active, setActive] = useState(card.active);
-    const [discovered, setDiscovered] = useState(false)
+    const [discovered, setDiscovered] = useState(card.discovered);
 
     const getSelector = (id) => {
         return `#${id}`
     }
+
+    if (card.remainining > 0) console.log("Some time remaining")
 
     const viewBoxSize = 160;
     const gradientId = "green_linear_gradient";
@@ -80,9 +82,10 @@ export const CardView = ({card, clickHandler, timeoutHandler, game}) => {
         }
 
         card.timeout = setTimeout(() => {
-            if (!discovered) setDiscovered(card.discovered)
-            setActive(card.discovered)
             timeoutHandler(card)
+            if (!discovered) setDiscovered(card.discovered)
+            setActive(card.discovered);
+            console.log("=== TIMEOUT ===")
         }, 1500);
     }
 

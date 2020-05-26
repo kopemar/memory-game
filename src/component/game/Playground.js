@@ -29,7 +29,6 @@ export const Playground = ({game}) => {
         if (!card.discovered) {
             card.active = false;
         }
-
         game.activeCard = null;
     }
 
@@ -40,7 +39,7 @@ export const Playground = ({game}) => {
             game.activeCard = card;
         } else {
             if (game.activeCard.pairsWith(card)) {
-                if (!card.discovered && game.activeCard.discovered) game.discovered += 2;
+                if (!card.discovered && !game.activeCard.discovered) game.discovered += 2;
                 game.activeCard.discovered = true;
                 card.discovered = true;
             } else {
@@ -48,6 +47,7 @@ export const Playground = ({game}) => {
                 card.active = false;
             }
             game.activeCard = null;
+            if (game.isWon()) setTimeout(() => alert("Game is won!"), 1000)
         }
     }
 

@@ -10,7 +10,7 @@ class Game {
                 card && game.cards.push(Card.fromProps(card));
             }
 
-            game.activeCard = props.activeCard;
+            game.activeCard = props.activeCard == null ? null : Card.fromProps(props.activeCard);
             game.discovered = props.discovered;
             return game;
         } catch {
@@ -37,7 +37,7 @@ class Game {
         console.log(this)
     }
 
-    isWon = () => this.count === this.discovered;
+    isWon () { return this.count === this.discovered;}
 
     shuffle() {
         let counter = this.cards.length;
@@ -93,6 +93,7 @@ export class Card {
         this.id = Card.getId();
         this.discovered = false;
         this.timeout = null;
+        this.remainining = 0;
     }
 
     isTheSame(card) {

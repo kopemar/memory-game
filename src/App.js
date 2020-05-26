@@ -12,10 +12,23 @@ import {HASH, PATH, STORAGE} from "./constant/Constants";
 import {MultiplayerLoad} from "./component/settings/MultiplayerLoad";
 import About from "./component/About";
 import Layout from "./component/Layout";
+import {getTimeout} from "./util/TimeoutUtil";
 
 export function saveMultiplayer(game) {
     console.log("saving game", game);
+    for (const card of game.cards) {
+        if (card.timeout !== null) {
+            card.remainining = getTimeout(card.timeout);
+            clearTimeout(card.timeout)
+        }
+        console.log(card.remainining)
+    }
     window.localStorage.setItem(STORAGE.MULTIPLAYER, JSON.stringify(game))
+}
+
+function isWelcome() {
+    if (JSON.parse(window.localStorage.getItem(STORAGE.WELCOME)) === null || JSON.parse(window.localStorage.getItem(STORAGE.WELCOME)).welcome === null) return false;
+    return JSON.parse(window.localStorage.getItem(STORAGE.WELCOME)).welcome
 }
 
 class App extends Component {
@@ -23,7 +36,7 @@ class App extends Component {
         super(props);
         this.state = {
             game: null,
-            welcome: JSON.parse(window.localStorage.getItem(STORAGE.WELCOME)).welcome ?? false,
+            welcome: isWelcome(),
             collapsed: false,
             playerCount: false,
             loaded: false,
@@ -71,7 +84,6 @@ class App extends Component {
                 return <>
                     {!this.state.loaded &&
                     <MultiplayerLoad onSelected={(game) => {
-                        console.log(this.state.loaded);
                         this.setState({loaded: true});
                         if (game === null) {
                             this.setState({playerCount: 0})
