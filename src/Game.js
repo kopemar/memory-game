@@ -70,14 +70,18 @@ export class MultiplayerGame extends Game {
     timeout = null;
 
     static fromProps(props) {
-        const game = new MultiplayerGame(props.cards.length, []);
-        super.readGameProps(props, game)
+        try {
+            const game = new MultiplayerGame(props.cards.length, []);
+            super.readGameProps(props, game)
 
-        for (const player of props.players) {
-            game.players.push(player === null ? null : Player.fromProps(player))
+            for (const player of props.players) {
+                game.players.push(player === null ? null : Player.fromProps(player))
+            }
+            game.activePlayer = props.activePlayer;
+            return game;
+        } catch (e) {
+            throw 'Invalid card'
         }
-        game.activePlayer = props.activePlayer;
-        return game;
     }
 
     handleMatch() {

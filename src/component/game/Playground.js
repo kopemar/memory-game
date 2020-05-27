@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {CardView} from "./CardView";
 import {COLORS} from "../../constant/Constants";
 import {MultiplayerGame} from "../../Game";
+import {saveMultiplayer} from "../../App";
 
 const PlaygroundContainer = styled.section`
     display: flex;
@@ -63,8 +64,6 @@ export class Playground extends Component {
                     this.props.game.handleMatch()
                 } else {
                     this.props.game.handleLoss();
-                    clearTimeout(this.props.game.timeout);
-                    this.setPlayerTimeout();
                     this.props.game.activeCard.active = false;
                     card.active = false;
                 }
@@ -79,7 +78,11 @@ export class Playground extends Component {
                     setTimeout(() => {
                         if (this.props.game instanceof MultiplayerGame) {
                             // todo who is the winner?
-                            alert("Game has ended!")
+                            alert(`Game has ended! Scores: ${this.props.game.players.map((player) => {
+                                    return player && `${player.name}: ${player.score}, `
+                                })}`);
+                            saveMultiplayer(null);
+                            window.location.reload()
                         } else {
                             alert("You won this game!")
                         }

@@ -16,15 +16,18 @@ import {getTimeout} from "./util/TimeoutUtil";
 
 export function saveMultiplayer(game) {
     console.log("saving game", game);
-    for (const card of game.cards) {
-        if (card.timeout !== null) {
-            card.remainining = getTimeout(card.timeout);
-            clearTimeout(card.timeout)
+    if (game !== null) {
+        for (const card of game.cards) {
+            if (card.timeout !== null) {
+                card.remainining = getTimeout(card.timeout);
+                clearTimeout(card.timeout)
+            }
         }
     }
 
     console.log(game)
-    window.localStorage.setItem(STORAGE.MULTIPLAYER, JSON.stringify(game))
+    if (game !== null) window.localStorage.setItem(STORAGE.MULTIPLAYER, JSON.stringify(game))
+    else window.localStorage.removeItem(STORAGE.MULTIPLAYER)
 }
 
 function isWelcome() {
@@ -130,7 +133,6 @@ class App extends Component {
                         }
                     </Route>
                 </Switch>
-
             </Layout>
         )
             ;
