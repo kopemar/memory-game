@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components';
 import {CardView} from "./CardView";
 import {COLORS} from "../../constant/Constants";
@@ -15,74 +15,82 @@ const PlaygroundContainer = styled.section`
     margin: 10px auto;
 `;
 
-export const Playground = ({game}) => {
-    const cards = [];
-
-    game.cards.forEach((card) => {
-        cards.push(<CardView clickHandler={(card) => handleCardClick(card)}
-                             card={card}
-                             game={game}
-                             timeoutHandler={(card) => handleTimeout(card)}/>)
-    })
-
-    const handleTimeout = (card) => {
-        if (!card.discovered) {
-            card.active = false;
-        }
-        game.activeCard = null;
+export class Playground extends Component {
+    constructor(props) {
+        super(props);
     }
 
-    function setPlayerTimeout() {
-        game.timeout = setTimeout(() => {
-            game.handleLoss();
-            setPlayerTimeout();
+    componentDidMount(): void {
+        if (this.props.game instanceof MultiplayerGame) {
+            this.setPlayerTimeout();
+        }
+    }
+
+    setPlayerTimeout () {
+        this.props.game.timeout = setTimeout(() => {
+            this.props.game.handleLoss();
+            this.setPlayerTimeout();
         }, 6000)
     }
 
-    useEffect(() => {
-        if (game instanceof MultiplayerGame) {
-            setPlayerTimeout();
-        }
-    }, [])
+    render () {
+        const cards = [];
 
-    function handleCardClick(card) {
-        card.active = true;
-        console.log(game);
-        if (game.activeCard === null) {
-            game.activeCard = card;
-        } else {
-            if (game.activeCard.pairsWith(card)) {
-                if (!card.discovered && !game.activeCard.discovered) game.discovered += 2;
-                game.activeCard.discovered = true;
-                card.discovered = true;
-                game.handleMatch()
-            } else {
-                game.handleLoss();
-                game.activeCard.active = false;
+        this.props.game.cards.forEach((card) => {
+            cards.push(<CardView clickHandler={(card) => handleCardClick(card)}
+                                 card={card}
+                                 game={this.props.game}
+                                 timeoutHandler={(card) => handleTimeout(card)}/>)
+        })
+
+        const handleTimeout = (card) => {
+            if (!card.discovered) {
                 card.active = false;
             }
+            this.props.game.activeCard = null;
+        }
 
-            if (game instanceof MultiplayerGame) {
-                clearTimeout(game.timeout);
-                setPlayerTimeout();
-            }
+        const handleCardClick = (card) => {
+            card.active = true;
+            console.log(this.props.game);
+            if (this.props.game.activeCard === null) {
+                this.props.game.activeCard = card;
+            } else {
+                if (this.props.game.activeCard.pairsWith(card)) {
+                    if (!card.discovered && !this.props.game.activeCard.discovered) this.props.game.discovered += 2;
+                    this.props.game.activeCard.discovered = true;
+                    card.discovered = true;
+                    this.props.game.handleMatch()
+                } else {
+                    this.props.game.handleLoss();
+                    clearTimeout(this.props.game.timeout);
+                    this.setPlayerTimeout();
+                    this.props.game.activeCard.active = false;
+                    card.active = false;
+                }
 
-            game.activeCard = null;
-            if (game.isWon()) {
-                setTimeout(() => {
-                    if (game instanceof MultiplayerGame) {
-                        // todo who is the winner?
-                        alert("Game has ended!")
-                    } else {
-                        alert("You won this game!")
-                    }
+                if (this.props.game instanceof MultiplayerGame) {
+                    clearTimeout(this.props.game.timeout);
+                    this.setPlayerTimeout();
+                }
 
-                }, 1000)
+                this.props.game.activeCard = null;
+                if (this.props.game.isWon()) {
+                    setTimeout(() => {
+                        if (this.props.game instanceof MultiplayerGame) {
+                            // todo who is the winner?
+                            alert("Game has ended!")
+                        } else {
+                            alert("You won this game!")
+                        }
+
+                    }, 1000)
+                }
             }
         }
-    }
 
-    return <PlaygroundContainer>
-        {cards}
-    </PlaygroundContainer>
-};
+        return <PlaygroundContainer>
+            {cards}
+        </PlaygroundContainer>
+    }
+}
