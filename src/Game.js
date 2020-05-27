@@ -112,6 +112,12 @@ export class MultiplayerGame extends Game {
 
 }
 
+export class SinglePlayerGame extends Game {
+    constructor(count) {
+        super(count)
+    }
+}
+
 export class Card {
     static fromProps(props) {
         try {

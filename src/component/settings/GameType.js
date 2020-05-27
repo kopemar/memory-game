@@ -22,7 +22,11 @@ export const GameType = () => {
     return <section>
         <Container>
             <Subheading>Choose type of the game</Subheading>
-            <CustomButton disabled>Single Player</CustomButton>
+            <Link to={PATH.SINGLEPLAYER}>
+                <CustomButton>
+                    Single Player
+                </CustomButton>
+            </Link>
             <Link to={PATH.MULTIPLAYER}>
                 <CustomButton>
                     Multiplayer

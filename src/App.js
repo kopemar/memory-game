@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 import './App.css';
-import {MultiplayerGame} from "./Game";
+import {MultiplayerGame, SinglePlayerGame} from "./Game";
 import {Playground} from "./component/game/Playground";
 import {PlayerBar} from "./component/game/PlayerBar";
 import {WelcomeScreen} from "./component/WelcomeScreen";
 import {PlayerCount} from "./component/settings/PlayerCount";
 import {PlayerNames} from "./component/settings/PlayerNames";
 import {GameType} from "./component/settings/GameType";
-import {Route, Switch} from "react-router-dom";
+import {Link, Route, Switch} from "react-router-dom";
 import {HASH, PATH, STORAGE} from "./constant/Constants";
 import {MultiplayerLoad} from "./component/settings/MultiplayerLoad";
 import About from "./component/About";
 import Layout from "./component/Layout";
 import {getTimeout} from "./util/TimeoutUtil";
+import {SingleplayerLoad} from "./component/settings/SingleplayerLoad";
 
 export function saveMultiplayer(game) {
     console.log("saving game", game);
@@ -118,6 +119,16 @@ class App extends Component {
                 <Switch>
                     <Route path={PATH.MULTIPLAYER}>
                         <Multiplayer/>
+                    </Route>
+                    <Route path={PATH.SINGLEPLAYER}>
+                        {!this.state.loaded && <SingleplayerLoad onSelected={(game) => {
+                            const g = game === null ? new SinglePlayerGame(16) : game;
+                            console.log(this.state.game)
+                            this.setState({loaded: true, game: g})
+                        }}/>}
+                        {this.state.loaded &&
+                        <Playground game={this.state.game}/>
+                        }
                     </Route>
                     <Route path={PATH.ABOUT}>
                         <About/>

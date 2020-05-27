@@ -62,7 +62,8 @@ export const PATH = {
     MULTIPLAYER: "/multiplayer",
     ABOUT: "/about",
     HOME: "/",
-    BASENAME: "/memory-game"
+    BASENAME: "/memory-game",
+    SINGLEPLAYER: "/singleplayer"
 }
 
 export const HASH = {
@@ -74,6 +75,7 @@ export const API = {
 }
 
 export const STORAGE = {
+    SINGLEPLAYER: "singleplayer_in_storage",
     MULTIPLAYER: "multiplayer_in_storage",
     WELCOME: "has_been_welcome",
 }

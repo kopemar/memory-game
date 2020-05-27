@@ -65,6 +65,9 @@ export const Header = ({collapsed, onBack}) => {
             <Route path={(PATH.MULTIPLAYER)}>
                 {back}
             </Route>
+            <Route path={(PATH.SINGLEPLAYER)}>
+                {back}
+            </Route>
             <Route path={PATH.ABOUT}>
                 {back}
             </Route>
