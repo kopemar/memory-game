@@ -58,7 +58,6 @@ const Img = styled.image`
 `
 
 export const CardView = ({card, clickHandler, timeoutHandler, game}) => {
-    console.log("New CardView", card);
     const [active, setActive] = useState(card.active);
     const [discovered, setDiscovered] = useState(card.discovered);
 
@@ -71,7 +70,6 @@ export const CardView = ({card, clickHandler, timeoutHandler, game}) => {
             timeoutHandler(card)
             if (!discovered) setDiscovered(card.discovered)
             setActive(card.discovered);
-            console.log("=== TIMEOUT ===")
         }, card.remainining);
     }
 
@@ -81,10 +79,8 @@ export const CardView = ({card, clickHandler, timeoutHandler, game}) => {
     const handleClick = () => {
         clickHandler(card)
         setActive(true);
-        console.log("Handle Click", card)
 
         if (card.pairsWith(game.activeCard)) {
-            console.log("clearing timeout")
             clearTimeout(game.activeCard.timeout);
         }
 
@@ -92,7 +88,6 @@ export const CardView = ({card, clickHandler, timeoutHandler, game}) => {
             timeoutHandler(card)
             if (!discovered) setDiscovered(card.discovered)
             setActive(card.discovered);
-            console.log("=== TIMEOUT ===")
         }, 1500);
     }
 

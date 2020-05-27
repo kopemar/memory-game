@@ -102,7 +102,7 @@ class App extends Component {
                     {this.state.loaded && this.state.playerCount > 0 && !this.state.game && <>
                         <PlayerNames count={this.state.playerCount} onFinished={players => initGame(players)}/></>}
                     {this.state.loaded && this.state.game && this.state.game.players && <>
-                        <PlayerBar players={this.state.game.players}/>
+                        <PlayerBar game={this.state.game}/>
                         <Playground game={this.state.game}/>
                     </>}
                 </>

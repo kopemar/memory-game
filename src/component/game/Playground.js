@@ -43,9 +43,9 @@ export const Playground = ({game}) => {
                 if (!card.discovered && !game.activeCard.discovered) game.discovered += 2;
                 game.activeCard.discovered = true;
                 card.discovered = true;
-                console.log("MATCH", game);
-                if (game instanceof MultiplayerGame) game.handleMatch()
+                game.handleMatch()
             } else {
+                game.handleLoss();
                 game.activeCard.active = false;
                 card.active = false;
             }
@@ -53,7 +53,8 @@ export const Playground = ({game}) => {
             if (game.isWon()) {
                 setTimeout(() => {
                     if (game instanceof MultiplayerGame) {
-                        alert("Game has ended")
+                        // todo who is the winner?
+                        alert("Game has ended!")
                     } else {
                         alert("You won this game!")
                     }

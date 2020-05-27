@@ -55,21 +55,24 @@ const Indicator = styled.div`
     margin-bottom: 4px;
 `
 
-export const PlayerBar = ({players}) => {
-    const [activePlayer, setActivePlayer] = useState(players[1]);
+export const PlayerBar = ({game}) => {
+    const [activePlayer, setActivePlayer] = useState(game.players[game.activePlayer]);
     const fields = [];
     const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-    for (const player of players) {
-        player !== null && observe(player, "score", change => {
+    for (const player of game.players) {
+        player !== null && observe(player, "score", () => {
             forceUpdate();
-            console.log(change, players[1]);
         })
     }
 
+    observe(game, "activePlayer", change => {
+        setActivePlayer(game.players[change.newValue])
+    })
 
-    for (let i = 1; i < players.length; i++) {
-        const player = players[i];
+
+    for (let i = 1; i < game.players.length; i++) {
+        const player = game.players[i];
         player && fields.push(<PlayerField><PlayerName active={player === activePlayer}>{player.name} ({player.score})</PlayerName></PlayerField>)
     }
 

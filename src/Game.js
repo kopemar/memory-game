@@ -48,6 +48,10 @@ class Game {
         console.log("Handle match")
     }
 
+    handleLoss() {
+
+    }
+
     shuffle() {
         let counter = this.cards.length;
 
@@ -83,18 +87,24 @@ export class MultiplayerGame extends Game {
         if (this.activePlayer !== null) this.players[this.activePlayer].score += 2;
     }
 
+    handleLoss() {
+        super.handleLoss();
+        this.activePlayer = this.activePlayer + 2 > this.players.length ? this.getFirstPlayerIndex(): this.activePlayer + 1;
+        console.log(this.activePlayer)
+    }
+
     constructor(count, players) {
         super(count);
         this.players = players;
+        this.activePlayer = this.getFirstPlayerIndex();
+    }
 
-        for (let i = 0; i < players.length; i++) {
-            if (players[i] !== undefined) {
-                console.log(players);
-                this.activePlayer = i;
-                console.log(i)
-                break;
-            }
+    getFirstPlayerIndex() {
+        console.log(this.players)
+        for (const player of this.players) {
+            if (player !== undefined && player !== null) return this.players.indexOf(player)
         }
+
     }
 
 }
@@ -175,9 +185,12 @@ export class Player {
     }
 }
 
+// makes Player class variables observable
 decorate(Player, {
     score: observable
 })
+
+// makes MultiplayerGame class variables observable
 decorate(MultiplayerGame, {
     activePlayer: observable
 })
