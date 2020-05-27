@@ -21,14 +21,19 @@ export function saveMultiplayer(game) {
             card.remainining = getTimeout(card.timeout);
             clearTimeout(card.timeout)
         }
-        console.log(card.remainining)
     }
+
+    console.log(game)
     window.localStorage.setItem(STORAGE.MULTIPLAYER, JSON.stringify(game))
 }
 
 function isWelcome() {
     if (JSON.parse(window.localStorage.getItem(STORAGE.WELCOME)) === null || JSON.parse(window.localStorage.getItem(STORAGE.WELCOME)).welcome === null) return false;
     return JSON.parse(window.localStorage.getItem(STORAGE.WELCOME)).welcome
+}
+
+function welcome() {
+    window.localStorage.setItem(STORAGE.WELCOME, JSON.stringify({welcome: true}));
 }
 
 class App extends Component {
@@ -49,8 +54,7 @@ class App extends Component {
             this.setState({collapsed: true});
 
             setTimeout(() => {
-                window.localStorage.setItem(STORAGE.WELCOME, JSON.stringify({welcome: true}));
-                console.log(window.localStorage)
+                welcome();
                 this.setState({welcome: JSON.parse(window.localStorage.getItem(STORAGE.WELCOME)).welcome});
                 console.log(JSON.parse(window.localStorage.getItem(STORAGE.WELCOME)).welcome)
             }, 1000)
@@ -66,11 +70,12 @@ class App extends Component {
         class Multiplayer extends Component {
             constructor(props) {
                 super(props);
-                console.log("Multiplayer constructor")
+                if (!isWelcome()) welcome();
+                console.log("Multiplayer constructor");
                 this.state = {
                     game: null,
-                    welcome: true,
-                    collapsed: false,
+                    welcome: isWelcome(),
+                    collapsed: true,
                     playerCount: false,
                     activeCard: null
                 };

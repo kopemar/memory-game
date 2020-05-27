@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {CardView} from "./CardView";
 import {COLORS} from "../../constant/Constants";
+import {MultiplayerGame} from "../../Game";
 
 const PlaygroundContainer = styled.section`
     display: flex;
@@ -11,7 +12,7 @@ const PlaygroundContainer = styled.section`
     background: ${COLORS.WHITE};
     border-radius: 4px;
     border: 1px solid ${COLORS.GRAY_BUT_GREEN};
-    margin: 10px;
+    margin: 10px auto;
 `;
 
 
@@ -42,12 +43,23 @@ export const Playground = ({game}) => {
                 if (!card.discovered && !game.activeCard.discovered) game.discovered += 2;
                 game.activeCard.discovered = true;
                 card.discovered = true;
+                console.log("MATCH", game);
+                if (game instanceof MultiplayerGame) game.handleMatch()
             } else {
                 game.activeCard.active = false;
                 card.active = false;
             }
             game.activeCard = null;
-            if (game.isWon()) setTimeout(() => alert("Game is won!"), 1000)
+            if (game.isWon()) {
+                setTimeout(() => {
+                    if (game instanceof MultiplayerGame) {
+                        alert("Game has ended")
+                    } else {
+                        alert("You won this game!")
+                    }
+
+                }, 1000)
+            }
         }
     }
 

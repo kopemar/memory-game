@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
-import styled, {css} from 'styled-components';
+import React, {useReducer, useState} from 'react';
+import styled from 'styled-components';
 import {COLORS, FONT_SIZE, SCREEN} from "../../constant/Constants";
+import {observe} from "mobx"
 
 const Container = styled.div`
     position: relative;
@@ -55,12 +56,21 @@ const Indicator = styled.div`
 `
 
 export const PlayerBar = ({players}) => {
-    const [activePlayer, setActivePlayer] = useState(players[1])
+    const [activePlayer, setActivePlayer] = useState(players[1]);
     const fields = [];
+    const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+    for (const player of players) {
+        player !== null && observe(player, "score", change => {
+            forceUpdate();
+            console.log(change, players[1]);
+        })
+    }
+
 
     for (let i = 1; i < players.length; i++) {
         const player = players[i];
-        player && fields.push(<PlayerField><PlayerName active={player === activePlayer}>{player.name}</PlayerName></PlayerField>)
+        player && fields.push(<PlayerField><PlayerName active={player === activePlayer}>{player.name} ({player.score})</PlayerName></PlayerField>)
     }
 
     return <Container>

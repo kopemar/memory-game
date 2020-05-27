@@ -1,21 +1,26 @@
 import {COLORS, IMAGES} from "./constant/Constants";
+import {decorate, observable} from "mobx";
 
 class Game {
     static fromProps(props) {
         try {
             const game = new Game(props.cards.length);
-            game.cards = [];
-
-            for (const card of props.cards) {
-                card && game.cards.push(Card.fromProps(card));
-            }
-
-            game.activeCard = props.activeCard == null ? null : Card.fromProps(props.activeCard);
-            game.discovered = props.discovered;
+            this.readGameProps(props, game)
             return game;
         } catch {
             throw "Not a valid JSON game"
         }
+    }
+
+    static readGameProps(props, game) {
+        game.cards = [];
+
+        for (const card of props.cards) {
+            card && game.cards.push(Card.fromProps(card));
+        }
+
+        game.activeCard = props.activeCard == null ? null : Card.fromProps(props.activeCard);
+        game.discovered = props.discovered;
     }
 
     constructor(count) {
@@ -39,6 +44,10 @@ class Game {
 
     isWon () { return this.count === this.discovered;}
 
+    handleMatch() {
+        console.log("Handle match")
+    }
+
     shuffle() {
         let counter = this.cards.length;
 
@@ -55,20 +64,37 @@ class Game {
 }
 
 export class MultiplayerGame extends Game {
+    activePlayer = 0;
 
     static fromProps(props) {
-        const game = Game.fromProps(props);
-        game.players = [];
+        const game = new MultiplayerGame(props.cards.length, []);
+        super.readGameProps(props, game)
+
         for (const player of props.players) {
             game.players.push(player === null ? null : Player.fromProps(player))
         }
-        console.log("fromProps", game);
+        game.activePlayer = 1;
         return game;
+    }
+
+    handleMatch() {
+        super.handleMatch();
+        console.log(this)
+        if (this.activePlayer !== null) this.players[this.activePlayer].score += 2;
     }
 
     constructor(count, players) {
         super(count);
-        this.players = players
+        this.players = players;
+
+        for (let i = 0; i < players.length; i++) {
+            if (players[i] !== undefined) {
+                console.log(players);
+                this.activePlayer = i;
+                console.log(i)
+                break;
+            }
+        }
     }
 
 }
@@ -133,6 +159,7 @@ export class Card {
 }
 
 export class Player {
+    score = 0;
     static fromProps (props) {
         try {
             const player = new Player(props.name);
@@ -145,6 +172,12 @@ export class Player {
 
     constructor(name) {
         this.name = name;
-        this.score = 0;
     }
 }
+
+decorate(Player, {
+    score: observable
+})
+decorate(MultiplayerGame, {
+    activePlayer: observable
+})
