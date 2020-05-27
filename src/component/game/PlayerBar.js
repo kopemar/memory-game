@@ -1,5 +1,5 @@
 import React, {useReducer, useState} from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import {COLORS, FONT_SIZE, SCREEN} from "../../constant/Constants";
 import {observe} from "mobx"
 
@@ -37,6 +37,7 @@ const PlayerName = styled.div`
     padding: 20px;
     font-size: ${FONT_SIZE.XLARGE};
     color: ${({active}) => active? COLORS.SILLY_GREEN : COLORS.GRAY};
+    transition: 1s linear;
     
     ${SCREEN.BELOW_PHONE} {
         text-align: left;
@@ -50,15 +51,35 @@ const Indicator = styled.div`
     position: absolute;
     height: 10px;
     width: 100%;
-    right: 0;
+    left: 0;
     bottom: 0;
     margin-bottom: 4px;
+    transition: 2s linear;
+    
+    ${({shouldAnimate}) => shouldAnimate && css`
+        @keyframes indicator {
+            from {
+                width: ${({start}) => start ? start : 100}%;
+            }
+            to {
+                width: ${({end}) => end ? end : 0}%;
+            }
+        }
+        animation-name: indicator; 
+        animation-duration: ${({duration}) => duration ? duration : 6000}ms; 
+        animation-timing-function: linear;`
+    }
+    
+    
 `
 
 export const PlayerBar = ({game}) => {
     const [activePlayer, setActivePlayer] = useState(game.players[game.activePlayer]);
-    const fields = [];
     const [, forceUpdate] = useReducer(x => x + 1, 0);
+    const [iStart, setIStart] = useState(100);
+    const [iEnd, setIEnd] = useState(0);
+    const [iDuration, setIDuration] = useState(6000);
+    const [iAnimation, setIAnimation] = useState(true);
 
     for (const player of game.players) {
         player !== null && observe(player, "score", () => {
@@ -67,10 +88,25 @@ export const PlayerBar = ({game}) => {
     }
 
     observe(game, "activePlayer", change => {
-        setActivePlayer(game.players[change.newValue])
+        setTimeout(() => {
+            setActivePlayer(game.players[change.newValue])
+            setIAnimation(false)
+
+            setTimeout(() => {
+                setIAnimation(true)
+            }, 500)
+        }, 500)
+    });
+
+    observe(game, "timeout", () => {
+        setIAnimation(false)
+
+        setTimeout(() => {
+            setIAnimation(true)
+        }, 100)
     })
 
-
+    const fields = [];
     for (let i = 1; i < game.players.length; i++) {
         const player = game.players[i];
         player && fields.push(<PlayerField><PlayerName active={player === activePlayer}>{player.name} ({player.score})</PlayerName></PlayerField>)
@@ -78,6 +114,6 @@ export const PlayerBar = ({game}) => {
 
     return <Container>
         {fields}
-        <Indicator/>
+        <Indicator start={iStart} end={iEnd} duration={iDuration} shouldAnimate={iAnimation}/>
     </Container>
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import {CardView} from "./CardView";
 import {COLORS} from "../../constant/Constants";
@@ -14,7 +14,6 @@ const PlaygroundContainer = styled.section`
     border: 1px solid ${COLORS.GRAY_BUT_GREEN};
     margin: 10px auto;
 `;
-
 
 export const Playground = ({game}) => {
     const cards = [];
@@ -33,6 +32,19 @@ export const Playground = ({game}) => {
         game.activeCard = null;
     }
 
+    function setPlayerTimeout() {
+        game.timeout = setTimeout(() => {
+            game.handleLoss();
+            setPlayerTimeout();
+        }, 6000)
+    }
+
+    useEffect(() => {
+        if (game instanceof MultiplayerGame) {
+            setPlayerTimeout();
+        }
+    }, [])
+
     function handleCardClick(card) {
         card.active = true;
         console.log(game);
@@ -49,6 +61,12 @@ export const Playground = ({game}) => {
                 game.activeCard.active = false;
                 card.active = false;
             }
+
+            if (game instanceof MultiplayerGame) {
+                clearTimeout(game.timeout);
+                setPlayerTimeout();
+            }
+
             game.activeCard = null;
             if (game.isWon()) {
                 setTimeout(() => {

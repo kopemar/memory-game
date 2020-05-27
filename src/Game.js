@@ -48,9 +48,7 @@ class Game {
         console.log("Handle match")
     }
 
-    handleLoss() {
-
-    }
+    handleLoss() {}
 
     shuffle() {
         let counter = this.cards.length;
@@ -69,6 +67,7 @@ class Game {
 
 export class MultiplayerGame extends Game {
     activePlayer = 0;
+    timeout = null;
 
     static fromProps(props) {
         const game = new MultiplayerGame(props.cards.length, []);
@@ -77,7 +76,7 @@ export class MultiplayerGame extends Game {
         for (const player of props.players) {
             game.players.push(player === null ? null : Player.fromProps(player))
         }
-        game.activePlayer = 1;
+        game.activePlayer = props.activePlayer;
         return game;
     }
 
@@ -192,5 +191,6 @@ decorate(Player, {
 
 // makes MultiplayerGame class variables observable
 decorate(MultiplayerGame, {
-    activePlayer: observable
+    activePlayer: observable,
+    timeout: observable
 })
