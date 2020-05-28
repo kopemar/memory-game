@@ -57,7 +57,7 @@ export class About extends Component {
     render() {
 
         const clearStorage = () => {
-            if (window.confirm("You are about to delete the storage!")) window.localStorage.clear();
+            if (window.confirm("Are you sure you want to delete storage?")) window.localStorage.clear();
         }
 
         return <Container>
