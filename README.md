@@ -6,13 +6,25 @@ Deployed at [Github Pages](https://kopemar.github.io/memory-game/)
 
 ### Technologies
 
-JS + React 
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+#### WebAPIs
+- Blob (file)
+- DOM 
+- History 
+- LocalStorage
+ 
+#### Libraries 
+- [React](https://reactjs.org/) (UI building)
+- [axios](https://github.com/axios/axios) (fetching data from REST API)
+- [mobx](https://mobx.js.org/) (observing variable changes)
+- [styled-components](https://styled-components.com/) (styling components)
+- [file-saver](https://github.com/eligrey/FileSaver.js) (file saving)
 
 ### Description
 A simple Memory Game (called _pexeso_ in Czech). 
+
+<hr/>
 
 ## Available Scripts
 
