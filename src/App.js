@@ -16,6 +16,14 @@ import {getTimeout} from "./util/TimeoutUtil";
 import {SingleplayerLoad} from "./component/settings/SingleplayerLoad";
 
 export function saveMultiplayer(game) {
+    saveGame(game, STORAGE.MULTIPLAYER)
+}
+
+export function saveSingleplayer(game) {
+    saveGame(game, STORAGE.SINGLEPLAYER)
+}
+
+function saveGame(game, key) {
     console.log("saving game", game);
     if (game !== null) {
         for (const card of game.cards) {
@@ -27,8 +35,8 @@ export function saveMultiplayer(game) {
     }
 
     console.log(game)
-    if (game !== null) window.localStorage.setItem(STORAGE.MULTIPLAYER, JSON.stringify(game))
-    else window.localStorage.removeItem(STORAGE.MULTIPLAYER)
+    if (game !== null) window.localStorage.setItem(key, JSON.stringify(game))
+    else window.localStorage.removeItem(key)
 }
 
 function isWelcome() {
@@ -71,6 +79,35 @@ class App extends Component {
             saveMultiplayer(game)
         };
 
+        class Singleplayer extends Component {
+
+            constructor(props) {
+                super(props);
+                this.state = {
+                    game: null,
+                    loaded: false,
+                }
+            }
+
+            componentWillUnmount(): void {
+                console.log(this.state.game);
+                if (this.state.game !== null) saveSingleplayer(this.state.game)
+            }
+
+            render() {
+                return <>{!this.state.loaded && <SingleplayerLoad onSelected={(game) => {
+                    const g = game === null ? new SinglePlayerGame(16) : game;
+                    console.log(this.state.game)
+                    this.setState({loaded: true, game: g})
+                    saveSingleplayer(g);
+                }}/>}
+                {this.state.loaded &&
+                <Playground game={this.state.game}/>
+                } </>;
+            }
+
+        }
+
         class Multiplayer extends Component {
             constructor(props) {
                 super(props);
@@ -79,7 +116,6 @@ class App extends Component {
                 this.state = {
                     game: null,
                     welcome: isWelcome(),
-                    collapsed: true,
                     playerCount: false,
                     activeCard: null
                 };
@@ -121,14 +157,7 @@ class App extends Component {
                         <Multiplayer/>
                     </Route>
                     <Route path={PATH.SINGLEPLAYER}>
-                        {!this.state.loaded && <SingleplayerLoad onSelected={(game) => {
-                            const g = game === null ? new SinglePlayerGame(16) : game;
-                            console.log(this.state.game)
-                            this.setState({loaded: true, game: g})
-                        }}/>}
-                        {this.state.loaded &&
-                        <Playground game={this.state.game}/>
-                        }
+                        <Singleplayer/>
                     </Route>
                     <Route path={PATH.ABOUT}>
                         <About/>

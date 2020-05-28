@@ -88,14 +88,7 @@ export const PlayerBar = ({game}) => {
     }
 
     observe(game, "activePlayer", change => {
-        setTimeout(() => {
-            setActivePlayer(game.players[change.newValue])
-            setIAnimation(false)
-
-            setTimeout(() => {
-                setIAnimation(true)
-            }, 500)
-        }, 500)
+        setActivePlayer(game.players[change.newValue])
     });
 
     observe(game, "timeout", () => {

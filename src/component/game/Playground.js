@@ -87,7 +87,7 @@ export class Playground extends Component {
                             alert("You won this game!")
                         }
 
-                    }, 1000)
+                    }, 500)
                 }
             }
         }
