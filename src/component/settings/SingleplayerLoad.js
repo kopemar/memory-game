@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
-import {MoveFromRight} from "../FadeIn";
-import {Subheading} from "../Heading";
-import {CustomButton} from "../Button";
+import {MoveFromRight} from "../visuals/Animations";
+import {Subheading} from "../visuals/Heading";
+import {CustomButton} from "../visuals/Button";
 import {SCREEN, STORAGE} from "../../constant/Constants";
 import {SinglePlayerGame} from "../../Game";
 import saveAs from 'file-saver';

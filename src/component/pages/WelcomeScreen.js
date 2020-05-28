@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import styled, {css} from "styled-components";
-import {STRING} from "../constant/Constants";
-import {CustomButton} from "./Button";
-import {FadeIn} from "./FadeIn";
-import {Subheading} from "./Heading";
+import {STRING} from "../../constant/Constants";
+import {CustomButton} from "../visuals/Button";
+import {FadeIn} from "../visuals/Animations";
+import {Subheading} from "../visuals/Heading";
 
 const Container = styled.section`
     max-width: 100%;

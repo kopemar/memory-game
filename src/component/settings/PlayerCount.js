@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import styled, {css} from 'styled-components'
-import {Subheading} from "../Heading";
+import {Subheading} from "../visuals/Heading";
 import {MAX_PLAYER_COUNT, MIN_PLAYER_COUNT, STRING} from "../../constant/Constants";
 import {PlayerNumber} from "./PlayerNumber";
-import {CustomButton} from "../Button";
+import {CustomButton} from "../visuals/Button";
 
 const Container = styled.main`
     transform: translateX(100%);

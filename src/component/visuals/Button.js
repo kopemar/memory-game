@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import {COLORS, FONT_SIZE, REJECT_ANIMATION, SCREEN} from "../constant/Constants";
+import {COLORS, FONT_SIZE, REJECT_ANIMATION, SCREEN} from "../../constant/Constants";
 
 const StyledButton = styled.button`
     border: none; 

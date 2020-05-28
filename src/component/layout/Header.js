@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
-import {PATH, SCREEN} from "../constant/Constants";
+import {PATH, SCREEN} from "../../constant/Constants";
 import {Link, Route, Switch} from "react-router-dom";
 
 const Container = styled.header`

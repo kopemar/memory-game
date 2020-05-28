@@ -1,10 +1,10 @@
 import React, {Component, useEffect, useState} from "react";
 import axios from 'axios'
-import {API, COLORS, FONT_SIZE} from "../constant/Constants";
+import {API, COLORS, FONT_SIZE} from "../../constant/Constants";
 import styled from 'styled-components'
-import {Header} from "./Header";
-import {Subheading} from "./Heading";
-import {CustomButton} from "./Button";
+import {Header} from "../layout/Header";
+import {Subheading} from "../visuals/Heading";
+import {CustomButton} from "../visuals/Button";
 
 const Container = styled.section`
     text-align:center; 

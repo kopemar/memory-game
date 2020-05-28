@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Header} from "./Header";
 import Footer from "./Footer";
 import {HashRouter as Router} from "react-router-dom";
-import {FadeIn} from "./FadeIn";
+import {FadeIn} from "../visuals/Animations";
 
 const Container = styled.div`
     display: flex; 

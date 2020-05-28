@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
-import {MoveFromRight} from "../FadeIn";
-import {Subheading} from "../Heading";
-import {CustomButton} from "../Button";
+import {MoveFromRight} from "../visuals/Animations";
+import {Subheading} from "../visuals/Heading";
+import {CustomButton} from "../visuals/Button";
 import {PATH, SCREEN} from "../../constant/Constants";
 import {Link} from "react-router-dom";
 

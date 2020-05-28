@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {COLORS, FONT_SIZE, SCREEN} from "../constant/Constants";
+import {COLORS, FONT_SIZE, SCREEN} from "../../constant/Constants";
 
 export const Subheading = styled.h2`
     margin: 50px;

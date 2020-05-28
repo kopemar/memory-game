@@ -76,9 +76,9 @@ const Indicator = styled.div`
 export const PlayerBar = ({game}) => {
     const [activePlayer, setActivePlayer] = useState(game.players[game.activePlayer]);
     const [, forceUpdate] = useReducer(x => x + 1, 0);
-    const [iStart, setIStart] = useState(100);
-    const [iEnd, setIEnd] = useState(0);
-    const [iDuration, setIDuration] = useState(6000);
+    const [iStart] = useState(100);
+    const [iEnd] = useState(0);
+    const [iDuration] = useState(6000);
     const [iAnimation, setIAnimation] = useState(true);
 
     for (const player of game.players) {

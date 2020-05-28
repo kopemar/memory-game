@@ -1,9 +1,9 @@
 import React, {useState, Component} from 'react'
 import styled, {css} from 'styled-components';
-import {Subheading} from "../Heading";
+import {Subheading} from "../visuals/Heading";
 import {COLORS, FONT_SIZE, SCREEN, STRING} from "../../constant/Constants";
-import {CustomButton} from "../Button";
-import {MoveFromRight} from "../FadeIn";
+import {CustomButton} from "../visuals/Button";
+import {MoveFromRight} from "../visuals/Animations";
 import {Player} from "../../Game";
 
 const Container = styled.div`
