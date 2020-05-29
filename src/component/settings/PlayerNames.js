@@ -4,7 +4,7 @@ import {Subheading} from "../visuals/Heading";
 import {COLORS, FONT_SIZE, SCREEN, STRING} from "../../constant/Constants";
 import {CustomButton} from "../visuals/Button";
 import {MoveFromRight} from "../visuals/Animations";
-import {Player} from "../../Game";
+import {Player} from "../../model/Game";
 
 const Container = styled.div`
     position: relative; 

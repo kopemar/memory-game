@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import styled from 'styled-components';
 import {CardView} from "./CardView";
 import {COLORS} from "../../constant/Constants";
-import {MultiplayerGame} from "../../Game";
-import {saveMultiplayer} from "../../App";
+import {MultiplayerGame} from "../../model/Game";
+import {saveMultiplayer} from "../pages/Multiplayer";
 
 const PlaygroundContainer = styled.section`
     display: flex;

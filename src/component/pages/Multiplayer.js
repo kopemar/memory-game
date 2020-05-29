@@ -2,11 +2,16 @@ import {Component} from "react";
 import {MultiplayerLoad} from "../settings/MultiplayerLoad";
 import {PlayerCount} from "../settings/PlayerCount";
 import {PlayerNames} from "../settings/PlayerNames";
-import {MultiplayerGame} from "../../Game";
+import {MultiplayerGame} from "../../model/Game";
 import {PlayerBar} from "../game/PlayerBar";
 import {Playground} from "../game/Playground";
 import React from "react";
-import {isWelcome, saveMultiplayer, welcome} from "../../App";
+import {isWelcome, saveGame, welcome} from "../../App";
+import {STORAGE} from "../../constant/Constants";
+
+export function saveMultiplayer(game) {
+    saveGame(game, STORAGE.MULTIPLAYER)
+}
 
 export class Multiplayer extends Component {
     // start new game

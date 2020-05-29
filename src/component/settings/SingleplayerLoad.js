@@ -4,13 +4,15 @@ import {MoveFromRight} from "../visuals/Animations";
 import {Subheading} from "../visuals/Heading";
 import {CustomButton} from "../visuals/Button";
 import {SCREEN, STORAGE} from "../../constant/Constants";
-import {SinglePlayerGame} from "../../Game";
+import {SinglePlayerGame} from "../../model/Game";
 import saveAs from 'file-saver';
 
 const Container = styled(MoveFromRight)`
     text-align: center; 
     
-    > button {
+    form > button {
+    margin: 15px 30px;
+    margin-top: 0px;
         ${SCREEN.BELOW_PHONE} {
             margin-bottom: 30px;
         }
@@ -58,7 +60,7 @@ export const SingleplayerLoad = ({onSelected}) => {
     return <section>
         <Container>
             <form>
-                <Subheading>Choose type of the game</Subheading>
+                <Subheading>Singleplayer Game</Subheading>
                 <CustomButton disabled={!isSingleplayerInStorage}
                               onClick={() => {
                                   console.log(window.localStorage.getItem(STORAGE.SINGLEPLAYER));

@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 const Container = styled(MoveFromRight)`
     text-align: center; 
     
-    > button {
+    button {
         margin: auto 30px;
        
         ${SCREEN.BELOW_PHONE} {

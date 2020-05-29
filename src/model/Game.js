@@ -1,4 +1,4 @@
-import {COLORS, IMAGES} from "./constant/Constants";
+import {COLORS, IMAGES} from "../constant/Constants";
 import {decorate, observable} from "mobx";
 
 class Game {

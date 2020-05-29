@@ -1,9 +1,14 @@
 import {Component} from "react";
 import {SingleplayerLoad} from "../settings/SingleplayerLoad";
-import {SinglePlayerGame} from "../../Game";
+import {SinglePlayerGame} from "../../model/Game";
 import {Playground} from "../game/Playground";
 import React from "react";
-import {saveSingleplayer} from "../../App";
+import {saveGame} from "../../App";
+import {STORAGE} from "../../constant/Constants";
+
+export function saveSingleplayer(game) {
+    saveGame(game, STORAGE.SINGLEPLAYER)
+}
 
 export class Singleplayer extends Component {
 
