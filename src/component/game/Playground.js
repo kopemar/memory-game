@@ -57,37 +57,24 @@ export class Playground extends Component {
             if (this.props.game.activeCard === null) {
                 this.props.game.activeCard = card;
             } else {
-                if (this.props.game.activeCard.pairsWith(card)) {
-                    if (!card.discovered && !this.props.game.activeCard.discovered) this.props.game.discovered += 2;
-                    this.props.game.activeCard.discovered = true;
-                    card.discovered = true;
-                    this.props.game.handleMatch()
-                } else {
-                    this.props.game.handleLoss();
-                    this.props.game.activeCard.active = false;
-                    card.active = false;
-                }
-
-                if (this.props.game instanceof MultiplayerGame) {
-                    clearTimeout(this.props.game.timeout);
-                    this.setPlayerTimeout();
-                }
-
-                this.props.game.activeCard = null;
-                if (this.props.game.isWon()) {
+                this.props.game.handlePairing(this.props.game.activeCard, card, () => {
                     setTimeout(() => {
                         if (this.props.game instanceof MultiplayerGame) {
-                            // todo who is the winner?
                             alert(`Game has ended! Scores: ${this.props.game.players.map((player) => {
-                                    return player && `${player.name}: ${player.score}, `
-                                })}`);
+                                return player && `${player.name}: ${player.score}, `
+                            })}`);
                             saveMultiplayer(null);
-                            window.location.reload()
+                            window.location.reload();
                         } else {
                             alert("You won this game!")
                         }
 
                     }, 500)
+                });
+
+                if (this.props.game instanceof MultiplayerGame) {
+                    clearTimeout(this.props.game.timeout);
+                    this.setPlayerTimeout();
                 }
             }
         }

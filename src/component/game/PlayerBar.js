@@ -36,7 +36,7 @@ const PlayerName = styled.div`
     text-transform: uppercase;
     padding: 20px;
     font-size: ${FONT_SIZE.XLARGE};
-    color: ${({active}) => active? COLORS.SILLY_GREEN : COLORS.GRAY};
+    color: ${({active}) => active ? COLORS.SILLY_GREEN : COLORS.GRAY};
     transition: 1s linear;
     
     ${SCREEN.BELOW_PHONE} {
@@ -80,11 +80,13 @@ export const PlayerBar = ({game}) => {
     const [iEnd] = useState(0);
     const [iDuration] = useState(6000);
     const [iAnimation, setIAnimation] = useState(true);
-
+    console.log(game)
     for (const player of game.players) {
-        player !== null && observe(player, "score", () => {
-            forceUpdate();
-        })
+        if (player !== null && player !== undefined) {
+            observe(player, "score", () => {
+                forceUpdate();
+            })
+        }
     }
 
     observe(game, "activePlayer", change => {
@@ -102,7 +104,8 @@ export const PlayerBar = ({game}) => {
     const fields = [];
     for (let i = 1; i < game.players.length; i++) {
         const player = game.players[i];
-        player && fields.push(<PlayerField><PlayerName active={player === activePlayer}>{player.name} ({player.score})</PlayerName></PlayerField>)
+        player && fields.push(<PlayerField><PlayerName
+            active={player === activePlayer}>{player.name} ({player.score})</PlayerName></PlayerField>)
     }
 
     return <Container>

@@ -45,10 +45,32 @@ class Game {
     isWon () { return this.count === this.discovered;}
 
     handleMatch() {
-        console.log("Handle match")
+        // to be defined in subclasses
     }
 
-    handleLoss() {}
+    handlePairing (first, second, winHandler = () => {}, matchHandler = () => {}, lossHandler =  () => {}) {
+        // match
+        if (first.pairsWith(second)) {
+            if (!second.discovered && !first.discovered) this.discovered += 2;
+            first.discovered = true;
+            second.discovered = true;
+            this.handleMatch();
+            matchHandler()
+
+            if (this.isWon()) winHandler();
+        } else {
+            this.handleLoss();
+            first.active = false;
+            second.active = false;
+            lossHandler()
+        }
+
+        this.activeCard = null;
+    }
+
+    handleLoss() {
+        // to be defined in subclasses
+    }
 
     shuffle() {
         let counter = this.cards.length;

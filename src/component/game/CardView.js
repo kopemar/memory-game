@@ -24,7 +24,6 @@ const FlipCard = styled.g`
     position: relative; 
 `
 
-
 const Back = styled.rect`
     width: 100%;
     height: 100%;
@@ -64,6 +63,7 @@ export const CardView = ({card, clickHandler, timeoutHandler, game}) => {
         return `#${id}`
     }
 
+    // for reloading game -- if there was some time remaining
     if (card.remainining > 0) {
         card.timeout = setTimeout(() => {
             timeoutHandler(card)
@@ -79,6 +79,7 @@ export const CardView = ({card, clickHandler, timeoutHandler, game}) => {
         clickHandler(card)
         setActive(true);
 
+        // turning back handler
         if (card.pairsWith(game.activeCard)) {
             clearTimeout(game.activeCard.timeout);
         }
@@ -98,10 +99,6 @@ export const CardView = ({card, clickHandler, timeoutHandler, game}) => {
                         <stop stopColor={COLORS.LIGHT_WASSERMANN} offset="0%"/>
                         <stop stopColor={COLORS.GREEN_AGAIN} offset="100%"/>
                     </linearGradient>
-
-                    <pattern id="img1" patternUnits="userSpaceOnUse" width="100" height="100">
-                        <image href="wall.jpg" x="0" y="0" width="100" height="100"/>
-                    </pattern>
                 </defs>
                 <FlipCard>
                     <Inner active={card.isTheSame(game.activeCard) || active || discovered} size={viewBoxSize}>
